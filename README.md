@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+Teach 2 Teach
 	
 ## Technologies
 Technologies used for this project:
