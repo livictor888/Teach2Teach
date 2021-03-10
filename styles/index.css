@@ -1,6 +1,7 @@
 p {
   margin: 0;
   padding: 0;
+  font-size: 14px;
 }
 
 .icon {
@@ -8,6 +9,15 @@ p {
   height: 20px;
 }
 
+.icon-bookmark {
+  width: 20px;
+  height: 25px;
+}
+
 .text-read-more {
   cursor: pointer;
+}
+
+.flex-1 {
+  flex: 1;
 }
