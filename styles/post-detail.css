@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-bookmark {
+  width: 20px;
+  height: 25px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.comment-interactions {
+  font-size: 14px;
+  color: #979dac;
+}
+
+.comment-input {
+  border: 1px #979dac solid;
+  border-radius: 20px;
+  padding-left: 15px;
+  height: 38px;
+}
+
+.rec-topics-container {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.rec-topics {
+  border: 1px solid black;
+  height: 100px;
+  flex: 0 0 160px;
+  margin-right: 10px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
