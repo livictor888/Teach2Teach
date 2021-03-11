@@ -6,22 +6,108 @@
     <title>My BCIT Project</title>
     <meta name="comp1800 boilerplate code" content="my bcit project">
     <meta name="author" content="BCIT">
-
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/share.css">
     <!-- Bootstrap for Mobile-first, and JQuery -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="share.css">
 
     <!-- Optional styles and scripts of your own -->
+    <style>
+        body {
+            background-color: white
+        }
 
+        .mt-100 {
+            margin-top: 100px
+        }
 
-</head> 
+        .modal {
+            background-image: none
+        }
+
+        .modal-title {
+            font-weight: 900
+        }
+
+        .modal-content {
+            border-radius: 13px
+        }
+
+        .modal-body {
+            color: #3b3b3b
+        }
+
+        .img-thumbnail {
+            border-radius: 33px;
+            width: 61px;
+            height: 61px
+        }
+
+        .fab:before {
+            position: relative;
+            top: 13px
+        }
+
+        .smd {
+            width: 200px;
+            font-size: small;
+            text-align: center
+        }
+
+        .modal-footer {
+            display: block
+        }
+
+        .ur {
+            border: none;
+            background-color: #e6e2e2;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px
+        }
+
+        .cpy {
+            border: none;
+            background-color: #e6e2e2;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            cursor: pointer
+        }
+
+        button.focus,
+        button:focus {
+            outline: 0;
+            box-shadow: none !important
+        }
+
+        .ur.focus,
+        .ur:focus {
+            outline: 0;
+            box-shadow: none !important
+        }
+
+        .message {
+            font-size: 11px;
+            color: #ee5535
+        }
+    </style>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript'>function myFunction() {
+
+            $(".message").text("link copied");
+        }</script>
+
+</head>
 
 <body>
 
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
+
     <!-- Header Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="">Teach 2 Teach</a>
@@ -42,36 +128,93 @@
             </ul>
         </div>
     </nav>
-    <div class="card">
-        <div class="card-body">
-            Share to social media
-        </div>
-      </div>
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary"><img src="./images/twitter.png" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" class= "icon" alt="twitter"></button>
-          <button type="button" class="btn btn-primary"><img src="./images/facebook.png" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" class= "icon" alt="facebok"> </button>
-          <button type="button" class="btn btn-primary"><img src="./images/discord.png" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" class= "icon" alt="discord"></button>
-          <button type="button" class="btn btn-primary"><img src="./images/slack.png" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" class= "icon" alt="slack"></button>
-        </div>
-      </div>
-    <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, API related    -->
-    <!----------------------------------------------->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
 
-    <!--------------------------------------------------------------------->
-    <!-- JS files: Your own JavaScript functions included here    -->
-    <!--------------------------------------------------------------------->
+    <div>
 
+
+        <div oncontextmenu='return false' class='snippet-body'>
+            <div class='container d-flex justify-content-center mt-100'><button type="button"
+                    class="btn btn-primary mx-auto" data-toggle="modal" data-target="#exampleModal"> Share </button>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content col-12">
+                        <div class="modal-header">
+                            <div id="snackbar"> Share successful!</div>
+                            <h5 class="modal-title">Share</h5> <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="icon-container1 d-flex">
+                                <div id='shareSuccessfulTwitter' class="smd"> <i class=" img-thumbnail fab fa-twitter fa-2x"
+                                        style="color:#4c6ef5;background-color: aliceblue"></i>
+                                    <p>Twitter</p>
+                                </div>
+                                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-facebook fa-2x"
+                                        style="color: #3b5998;background-color: #eceff5;"></i>
+                                    <p>Facebook</p>
+                                </div>
+                                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-reddit-alien fa-2x"
+                                        style="color: #FF5700;background-color: #fdd9ce;"></i>
+                                    <p>Reddit</p>
+                                </div>
+                                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-discord fa-2x "
+                                        style="color: #738ADB;background-color: #d8d8d8;"></i>
+                                    <p>Discord</p>
+                                </div>
+                            </div>
+                            <div class="icon-container2 d-flex">
+                                <div class="smd"> <i class="img-thumbnail fab fa-whatsapp fa-2x"
+                                        style="color: #25D366;background-color: #cef5dc;"></i>
+                                    <p>Whatsapp</p>
+                                </div>
+                                <div class="smd"> <i class="img-thumbnail fab fa-facebook-messenger fa-2x"
+                                        style="color: #3b5998;background-color: #eceff5;"></i>
+                                    <p>Messenger</p>
+                                </div>
+                                <div class="smd"> <i class="img-thumbnail fab fa-telegram fa-2x"
+                                        style="color: #4c6ef5;background-color: aliceblue"></i>
+                                    <p>Telegram</p>
+                                </div>
+                                <div class="smd"> <i class="img-thumbnail fab fa-weixin fa-2x"
+                                        style="color: #7bb32e;background-color: #daf1bc;"></i>
+                                    <p>WeChat</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"> <label style="font-weight: 600">Page Link <span
+                                    class="message"></span></label><br />
+                            <div class="row"> <input disabled class="col-10 ur" type="url"
+                                    placeholder="https://www.arcardio.app/acodyseyy" id="myInput"
+                                    aria-describedby="inputGroup-sizing-default" style="height: 40px;"> <button
+                                    class="cpy" onclick="myFunction()"><i class="far fa-clone"></i></button> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!----------------------------------------------->
+        <!-- JS: Boostrap, Firebase, API related    -->
+        <!----------------------------------------------->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+            </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+            </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+            </script>
+
+        <!--------------------------------------------------------------------->
+        <!-- JS files: Your own JavaScript functions included here    -->
+        <!--------------------------------------------------------------------->
+        <script src="/scripts/share.js"></script>
 </body>
 
 </html>
