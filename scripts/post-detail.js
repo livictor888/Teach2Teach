@@ -1,40 +1,57 @@
-var current_star_statusses = [];
+(function () {
+  window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get("post_id");
 
-star_elements = $(".fa-star").parent();
+    const postTitleElem = document.querySelector("#post-title");
+    const postContentElem = document.querySelector("#post-content");
 
-star_elements.find(".fa-star").each(function (i, elem) {
-  current_star_statusses.push($(elem).hasClass("yellow"));
-});
+    db.collection("posts")
+      .doc(postId)
+      .onSnapshot((doc) => {
+        postTitleElem.innerText = doc.data().title;
+        postContentElem.innerText = doc.data().content;
+      });
+  };
+})();
 
-star_elements.find(".fa-star").mouseenter(changeRatingStars);
-star_elements.find(".fa-star").mouseleave(resetRatingStars);
+// var current_star_statusses = [];
 
-/**
- * Changes the rating star colors when hovering over it.
- */
-function changeRatingStars() {
-  // Current star hovered
-  var star = $(this);
+// star_elements = $(".fa-star").parent();
 
-  // Removes all colors first from all stars
-  $(".fa-star").removeClass("gray").removeClass("yellow");
+// star_elements.find(".fa-star").each(function (i, elem) {
+//   current_star_statusses.push($(elem).hasClass("yellow"));
+// });
 
-  // Makes the current hovered star yellow
-  star.addClass("yellow");
+// star_elements.find(".fa-star").mouseenter(changeRatingStars);
+// star_elements.find(".fa-star").mouseleave(resetRatingStars);
 
-  // Makes the previous stars yellow and the next stars gray
-  star.parent().prevAll().children(".fa-star").addClass("yellow");
-  star.parent().nextAll().children(".fa-star").addClass("gray");
-}
+// /**
+//  * Changes the rating star colors when hovering over it.
+//  */
+// function changeRatingStars() {
+//   // Current star hovered
+//   var star = $(this);
 
-/**
- * Resets the rating star colors when not hovered anymore.
- */
-function resetRatingStars() {
-  star_elements.each(function (i, elem) {
-    $(elem)
-      .removeClass("yellow")
-      .removeClass("gray")
-      .addClass(current_star_statusses[i] ? "yellow" : "gray");
-  });
-}
+//   // Removes all colors first from all stars
+//   $(".fa-star").removeClass("gray").removeClass("yellow");
+
+//   // Makes the current hovered star yellow
+//   star.addClass("yellow");
+
+//   // Makes the previous stars yellow and the next stars gray
+//   star.parent().prevAll().children(".fa-star").addClass("yellow");
+//   star.parent().nextAll().children(".fa-star").addClass("gray");
+// }
+
+// /**
+//  * Resets the rating star colors when not hovered anymore.
+//  */
+// function resetRatingStars() {
+//   star_elements.each(function (i, elem) {
+//     $(elem)
+//       .removeClass("yellow")
+//       .removeClass("gray")
+//       .addClass(current_star_statusses[i] ? "yellow" : "gray");
+//   });
+// }

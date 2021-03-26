@@ -10,10 +10,9 @@
   <!-- Bootstrap for Mobile-first, and JQuery -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
   <!-- Optional styles and scripts of your own -->
-  <link rel="stylesheet" href="./styles/post-detail.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
 </head>
 
 <body>
@@ -41,23 +40,24 @@
     </div>
   </nav>
 
-  <div>
+  <!-- Bottom Navigation Bar -->
+  <div class="fixed-bottom py-3 bg-info">
+    <div class="container text-center">My Sticky Footer</div>
+  </div>
+  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom">
+    <div class="container py-3">
+      <a href="index.html"><img src="./images/icon-home.png" /></a>
+      <img src="./images/icon-search.png" />
+      <img src="./images/icon-plus.png" id="bottom-icon-add" />
+      <img src="./images/icon-bookmark-1.png" />
+      <img src="./images/icon-contacts.png" />
+    </div>
+  </footer>
+
+  <div id="homepage-content">
     <div class="container-fluid my-3">
-      <!-- Bottom Navigation Bar -->
-      <div class="fixed-bottom py-3 bg-info">
-        <div class="container text-center">My Sticky Footer</div>
-      </div>
-      <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom">
-        <div class="container py-3">
-          <a href="index.html"><img src="./images/icon-home.png" /></a>
-          <img src="./images/icon-search.png" />
-          <img src="./images/icon-plus.png" />
-          <img src="./images/icon-bookmark-1.png" />
-          <img src="./images/icon-contacts.png" />
-        </div>
-      </footer>
       <!-- Title -->
-      <div id="post-title" class="h4"></div>
+      <div class="h4 post-title"></div>
 
       <!-- Tag badges -->
       <div class="d-flex mb-2">
@@ -76,13 +76,11 @@
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
           <div class="d-flex align-items-center">
-            <ul class="list-inline rating-list">
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star gray"></i></li>
-            </ul>
+            <img class="icon" src="./images/icon-star.png" alt="icon-star" />
+            <img class="icon" src="./images/icon-star.png" alt="icon-star" />
+            <img class="icon" src="./images/icon-star.png" alt="icon-star" />
+            <img class="icon" src="./images/icon-star.png" alt="icon-star" />
+            <img class="icon" src="./images/icon-star.png" alt="icon-star" />
           </div>
           <div>
             <p class="small pl-3">3456 Reviews</p>
@@ -94,7 +92,15 @@
       </div>
 
       <!-- Content -->
-      <div id="post-content" class="my-2"></div>
+      <div class="my-2 post-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+          eum dolorum blanditiis esse enim perferendis consectetur nulla
+          commodi, sint, rerum nesciunt tempore atque. Officia dolorum et
+          nobis iste doloremque! Minus...<span class="text-read-more text-primary post-readmore">
+            Read More</span>
+        </p>
+      </div>
 
       <!-- Post interaction -->
       <div class="d-flex">
@@ -110,48 +116,8 @@
           <img class="icon-bookmark" src="./images/icon-bookmark.png" alt="icon-bookmark" />
         </div>
       </div>
-      <div class="bg-secondary w-100 mt-3 mb-2" style="height: 2px"></div>
-
-      <!-- Comment section -->
-      <div class="d-flex">
-        <img class="comment-avatar" src="https://randomuser.me/api/portraits/thumb/women/45.jpg" alt="avatar" />
-        <div class="ml-2">
-          <p>
-            <span class="comment-username">John</span> Lorem ipsum dolor, sit
-            amet consecur adipisicing elit.
-          </p>
-          <div class="d-flex comment-interactions">
-            <div class="mr-2">1 d</div>
-            <div class="mr-2">4 likes</div>
-            <div>Reply</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- New comment section -->
-      <div class="w-100 my-4">
-        <input class="w-100 comment-input" placeholder="Comment here" />
-      </div>
-
-      <!-- Recommended Topics -->
-      <div class="mb-4">
-        <div class="h5">Recommended Topics</div>
-        <div class="d-flex rec-topics-container">
-          <div class="rec-topics">
-            <p>Topic 1</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 2</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 3</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 4</p>
-          </div>
-        </div>
-      </div>
     </div>
+    <div class="bg-secondary w-100" style="height: 4px"></div>
   </div>
 
   <!----------------------------------------------->
@@ -166,7 +132,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
@@ -176,7 +141,7 @@
   <!--------------------------------------------------------------------->
   <!-- JS files: Your own JavaScript functions included here    -->
   <!--------------------------------------------------------------------->
-  <script src="./scripts/post-detail.js"></script>
+  <script src="./scripts/homepage.js"></script>
 </body>
 
 </html>

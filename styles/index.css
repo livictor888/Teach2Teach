@@ -21,3 +21,9 @@ p {
 .flex-1 {
   flex: 1;
 }
+
+.separated-line {
+  height: 4px;
+  margin-top: 5px;
+  width: 100vw;
+}
