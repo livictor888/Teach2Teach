@@ -38,6 +38,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">login/signup</a>
                 </li>
+                <li class="nav-item" id="sign-out">
+                    <a class="nav-link" href="login.html">signout</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -55,6 +58,19 @@
             <img src="./images/icon-contacts.png" />
         </div>
     </footer>
+
+    <div class="container">
+        <div class="my-3 h5">Create New Post</div>
+        <div class="h6">Title</div>
+        <input id="new-post-title" class="w-100 rounded p-1" placeholder="Post title" />
+        <div class="h6 my-3">Content</div>
+        <textarea id="new-post-content" class="w-100 rounded content p-1" placeholder="Post content"
+            rows="9"></textarea><br />
+        <div class="d-flex justify-content-end my-3">
+            <button class="mr-3 btn btn-dark">Discard</button>
+            <button id="new-post-submit-btn" class="btn btn-info">Submit</button>
+        </div>
+    </div>
 
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
@@ -77,7 +93,16 @@
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
+    <script src="./scripts/common-snipshet.js"></script>
+    <script src="./scripts/common-features.js"></script>
     <script src="./scripts/firebase.js"></script>
+
+    <script>
+        showSpinner();
+        setTimeout(function () {
+            removeSpinner()
+        }, 4000);
+    </script>
 
 </body>
 

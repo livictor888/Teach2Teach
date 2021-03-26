@@ -3,19 +3,25 @@ function addSignoutToTopBar() {
   const signoutButton = document.querySelector("#sign-out");
 
   if (signoutButton) {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    signoutButton.addEventListener("click", () => {
+      firebase d
+        .auth()
+        .signOut()
+        .then(() => {
+          window.location.href = "./index.html";
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    });
+  }
+
+  const profileButton = document.querySelector("#sign-out");
+
+  if (signoutButton) {
   }
 }
 
-// Signout
 function addNavBarFeature() {
   // Home Icon
   const homepageButton = document.querySelector("#bottom-icon-home");
@@ -31,16 +37,18 @@ function addNavBarFeature() {
   if (addNewPostIcon) {
     addNewPostIcon.addEventListener("click", function () {
       isUserLoggedIn().then((loggedIn) => {
-        console.log(loggedIn);
         if (loggedIn) {
           window.location.href = "./new-post.html";
         } else {
-          console.log("here");
           window.location.href = "./login.html";
         }
       });
     });
   }
+
+  // Profile Icon
+
+  // Search Icon
 }
 
 // Call

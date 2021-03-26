@@ -1,6 +1,11 @@
 (function () {
   window.onload = async function () {
+    isUserLoggedIn().then(function (result) {
+      console.log("User logged in: " + result);
+    });
+
     /**** ===== Render post detail ===== ****/
+    showSpinner();
     db.collection("posts")
       .orderBy("date_created", "desc")
       .onSnapshot((querySnapshot) => {
@@ -9,7 +14,6 @@
           renderNewPost({ id: doc.id, ...doc.data() });
         });
       });
-    showSpinner();
 
     /**** ===== Navigate to post detail ===== ****/
     const postTitle = document.querySelectorAll(".post-title");
