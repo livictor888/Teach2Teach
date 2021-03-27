@@ -4,7 +4,7 @@ function addSignoutToTopBar() {
 
   if (signoutButton) {
     signoutButton.addEventListener("click", () => {
-      firebase d
+      firebase
         .auth()
         .signOut()
         .then(() => {
