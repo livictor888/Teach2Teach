@@ -1,0 +1,16 @@
+.btn-primary{
+    border-radius: 10px;
+    margin: 20 px;
+}
+
+#EditProfileButton{
+    visibility: visable;
+}
+
+#UpdateProfileButton{
+    visibility: hidden;
+}
+
+#CancelProfileButton{
+    visibility: hidden;
+}
