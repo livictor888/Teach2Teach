@@ -36,8 +36,8 @@ function addNavBarFeature() {
   const addNewPostIcon = document.querySelector("#bottom-icon-add");
   if (addNewPostIcon) {
     addNewPostIcon.addEventListener("click", function () {
-      isUserLoggedIn().then((loggedIn) => {
-        if (loggedIn) {
+      isUserLoggedIn().then((currentUser) => {
+        if (currentUser) {
           window.location.href = "./new-post.html";
         } else {
           window.location.href = "./login.html";

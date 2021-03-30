@@ -28,5 +28,5 @@ function removeSpinner() {
 // Detect if user logged in or not
 const isUserLoggedIn = () =>
   new Promise((res) => {
-    firebase.auth().onAuthStateChanged((user) => res(!!user));
+    firebase.auth().onAuthStateChanged((user) => res(user));
   });
