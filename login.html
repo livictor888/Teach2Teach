@@ -113,6 +113,7 @@
                 //write to firestore
                 name: user.displayName, //"users" collection
                 email: user.email, //with authenticated user's ID (user.uid)
+                ava_number: Math.floor(Math.random() * 100)
               })
               .then(function () {
                 console.log("New user added to firestore");

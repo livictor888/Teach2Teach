@@ -50,8 +50,11 @@ function addNavBarFeature(currentUser) {
   // Search Icon
 }
 
+let CURRENT_USER = undefined;
+
 // Call
 isUserLoggedIn().then((currentUser) => {
+  CURRENT_USER = currentUser;
   addSignoutToTopBar(currentUser);
   addNavBarFeature(currentUser);
 });

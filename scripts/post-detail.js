@@ -8,12 +8,83 @@
       .doc(postId)
       .onSnapshot((doc) => {
         removeSpinner();
-        renderPostDetail(doc.data());
+        renderPostDetail({ id: doc.id, ...doc.data() });
       });
   };
 
   /**** ===== Helper functions ===== ****/
-  function renderPostDetail(post) {
+  function renderComments(post) {
+    return new Promise((res) => {
+      // Get the comment content
+      db.collection("comments")
+        .where("post_id", "==", post.id)
+        .onSnapshot((querySnapshot) => {
+          const commentElem = document.createElement("div");
+          let commentSection = "";
+          let promises = [];
+          querySnapshot.forEach((doc, index) => {
+            const commentDoc = doc.data();
+
+            // Add promise to fetch author info of each comments
+            promises.push(getDataFromDocAsync(db, "users", commentDoc.user_id));
+            let content = `        
+              <div class="d-flex my-2">
+                <img class="comment-avatar" src="https://randomuser.me/api/portraits/thumb/women/<avatar_${
+                  commentDoc.user_id
+                }>.jpg" alt="avatar" />
+                <div class="ml-2 flex-fill">
+                  <p>
+                    <span class="comment-username"><username_${
+                      commentDoc.user_id
+                    }></span> <content>
+                  </p>
+                  <div class="d-flex comment-interactions">
+                    <div class="mr-2">${convertTimeFromThePast(
+                      commentDoc.date_created
+                    )}</div>
+                    <div class="mr-2">${commentDoc.likes} likes</div>
+                  </div>
+                </div>
+                <div class="comment-like-icon-wrapper" comment_id="${doc.id}">
+                  <img class="comment-like-icon" alt="icon-like" src="./images/${
+                    commentDoc.who_likes.includes(CURRENT_USER.uid)
+                      ? "icon-like-solid.png"
+                      : "icon-like-frame.png"
+                  }"/>
+                </div>
+              </div>`;
+            content = content.replace("<content>", commentDoc.content);
+            commentSection += content;
+          });
+
+          Promise.all(promises).then((userDocs) => {
+            userDocs.forEach((user, index) => {
+              const userData = user.data();
+              // Insert author info to comment elements
+              commentSection = commentSection.replace(
+                `<username_${user.id}>`,
+                userData.name
+              );
+              commentSection = commentSection.replace(
+                `<avatar_${user.id}>`,
+                userData.ava_number
+              );
+            });
+            commentElem.innerHTML = commentSection;
+
+            const postCommentWrapper = document.querySelector(
+              "#post-comment-wrapper"
+            );
+            postCommentWrapper.innerHTML = "";
+            postCommentWrapper.appendChild(commentElem);
+            addEventToLikeCommentIconn();
+            res("");
+          });
+        });
+    });
+  }
+
+  async function renderPostDetail(post) {
     const container = document.querySelector("#post-detail-container");
     const contentElem = document.createElement("div");
     contentElem.setAttribute("class", "container-fluid my-3");
@@ -75,19 +146,7 @@
       <div class="bg-secondary w-100 mt-3 mb-2" style="height: 2px"></div>
 
       <!-- Comment section -->
-      <div class="d-flex">
-        <img class="comment-avatar" src="https://randomuser.me/api/portraits/thumb/women/45.jpg" alt="avatar" />
-        <div class="ml-2">
-          <p>
-            <span class="comment-username">John</span> Lorem ipsum dolor, sit
-            amet consecur adipisicing elit.
-          </p>
-          <div class="d-flex comment-interactions">
-            <div class="mr-2">1 d</div>
-            <div class="mr-2">4 likes</div>
-            <div>Reply</div>
-          </div>
-        </div>
+      <div id="post-comment-wrapper">
       </div>
 
       <!-- New comment section -->
@@ -116,5 +175,50 @@
     `;
 
     container.appendChild(contentElem);
+    await renderComments(post);
+  }
+
+  // Event handler like button
+  function addEventToLikeCommentIconn() {
+    const elements = document.querySelectorAll(".comment-like-icon-wrapper");
+
+    elements.forEach((element) => {
+      element.addEventListener("click", () => {
+        // Get comment ref
+        const commentRef = db
+          .collection("comments")
+          .doc(element.getAttribute("comment_id"));
+
+        commentRef.get().then((doc) => {
+          const commentData = doc.data();
+          // Check if user already liked comment?
+          if (commentData.who_likes.includes(CURRENT_USER.uid)) {
+            // Unlike
+            commentRef.update({
+              likes: commentData.likes - 1,
+              who_likes: doc
+                .data()
+                .who_likes.filter((id) => id != CURRENT_USER.uid),
+            });
+
+            element.children[0].setAttribute(
+              "src",
+              "./images/icon-like-frame.png"
+            );
+          } else {
+            // like
+            commentRef.update({
+              likes: commentData.likes + 1,
+              who_likes: [...commentData.who_likes, CURRENT_USER.uid],
+            });
+
+            element.children[0].setAttribute(
+              "src",
+              "./images/icon-like-solid.png"
+            );
+          }
+        });
+      });
+    });
   }
 })();

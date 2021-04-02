@@ -37,11 +37,18 @@ p {
   color: #979dac;
 }
 
+.comment-like-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
 .comment-input {
   border: 1px #979dac solid;
   border-radius: 20px;
   padding-left: 15px;
   height: 38px;
+  outline: none;
 }
 
 .rec-topics-container {
