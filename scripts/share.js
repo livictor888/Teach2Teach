@@ -1,6 +1,15 @@
-function myFunction() {
+address = document.getElementById("myInput")
+address.setAttribute('placeholder', window.location.href)
+address.value = window.location.href.toString();
 
+
+function myFunction() {
     $(".message").text("link copied");
+    let address = document.getElementById("myInput");
+    console.log(address.value);
+    address.select();
+    address.setSelectionRange(0, 99999)
+    document.execCommand('copy');
 }
 
 function showToast() {
@@ -12,15 +21,12 @@ function showToast() {
   
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
+}
 
-address = document.getElementById("myInput")
-address.setAttribute('placeholder', window.location.href)
+
 
 shareEventTwitter = document.getElementById("shareSuccessfulTwitter");
 shareEventTwitter.addEventListener('click', function (event) {
-    //M.toast({html: 'I am a toast!'})
-    //alert("share sucessful");
     showToast()
     
 
