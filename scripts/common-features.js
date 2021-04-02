@@ -1,8 +1,9 @@
 // Signout
-function addSignoutToTopBar() {
+function addSignoutToTopBar(currentUser) {
   const signoutButton = document.querySelector("#sign-out");
 
-  if (signoutButton) {
+  if (signoutButton && currentUser) {
+    signoutButton.classList.remove("d-none");
     signoutButton.addEventListener("click", () => {
       firebase
         .auth()
@@ -11,7 +12,7 @@ function addSignoutToTopBar() {
           window.location.href = "./index.html";
         })
         .catch((error) => {
-          // An error happened.
+          console.log(error);
         });
     });
   }
@@ -22,7 +23,7 @@ function addSignoutToTopBar() {
   }
 }
 
-function addNavBarFeature() {
+function addNavBarFeature(currentUser) {
   // Home Icon
   const homepageButton = document.querySelector("#bottom-icon-home");
 
@@ -36,13 +37,11 @@ function addNavBarFeature() {
   const addNewPostIcon = document.querySelector("#bottom-icon-add");
   if (addNewPostIcon) {
     addNewPostIcon.addEventListener("click", function () {
-      isUserLoggedIn().then((currentUser) => {
-        if (currentUser) {
-          window.location.href = "./new-post.html";
-        } else {
-          window.location.href = "./login.html";
-        }
-      });
+      if (currentUser) {
+        window.location.href = "./new-post.html";
+      } else {
+        window.location.href = "./login.html";
+      }
     });
   }
 
@@ -52,5 +51,7 @@ function addNavBarFeature() {
 }
 
 // Call
-addSignoutToTopBar();
-addNavBarFeature();
+isUserLoggedIn().then((currentUser) => {
+  addSignoutToTopBar(currentUser);
+  addNavBarFeature(currentUser);
+});

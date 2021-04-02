@@ -109,21 +109,18 @@
     <!-------------------------------------->
 
     <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Teach 2 Teach</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="/">Teach 2 Teach</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">my data</a>
+                    <a class="nav-link" href="login.html">Login/Signup</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">my profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">login/signup</a>
+                <li class="nav-item d-none" id="sign-out">
+                    <a class="nav-link" href="login.html">Logout</a>
                 </li>
             </ul>
         </div>
@@ -147,7 +144,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="icon-container1 d-flex">
-                                <div id='shareSuccessfulTwitter' class="smd"> <i class=" img-thumbnail fab fa-twitter fa-2x"
+                                <div id='shareSuccessfulTwitter' class="smd"> <i
+                                        class=" img-thumbnail fab fa-twitter fa-2x"
                                         style="color:#4c6ef5;background-color: aliceblue"></i>
                                     <p>Twitter</p>
                                 </div>
@@ -155,7 +153,8 @@
                                         style="color: #3b5998;background-color: #eceff5;"></i>
                                     <p>Facebook</p>
                                 </div>
-                                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-reddit-alien fa-2x"
+                                <div id='shareSuccessful' class="smd"> <i
+                                        class="img-thumbnail fab fa-reddit-alien fa-2x"
                                         style="color: #FF5700;background-color: #fdd9ce;"></i>
                                     <p>Reddit</p>
                                 </div>
@@ -217,4 +216,4 @@
         <script src="/scripts/share.js"></script>
 </body>
 
-</html> 
+</html>

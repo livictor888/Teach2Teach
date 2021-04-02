@@ -1,151 +1,125 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Teach 2 Teach</title>
-    <meta name="comp1800 boilerplate code" content="my bcit project" />
-    <meta name="author" content="BCIT" />
 
-    <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <!-- Optional styles and scripts of your own -->
+<head>
+  <meta charset="utf-8" />
+  <title>Teach 2 Teach</title>
+  <meta name="comp1800 boilerplate code" content="my bcit project" />
+  <meta name="author" content="BCIT" />
 
-    <link href="./styles/search.css" rel="stylesheet" />
-  </head>
+  <!-- Bootstrap for Mobile-first, and JQuery -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <!-- Optional styles and scripts of your own -->
 
-  <body>
-    <!-------------------------------------->
-    <!-- The following is HTML for layout -->
-    <!-------------------------------------->
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="">Teach 2 Teach</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo02"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">my data</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html">my profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">login/signup</a>
-          </li>
-          <li class="nav-item" id="sign-out">
-            <a class="nav-link" href="login.html">signout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <link href="./styles/search.css" rel="stylesheet" />
+</head>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="fixed-bottom py-3 bg-info">
-      <div class="container text-center">My Sticky Footer</div>
+<body>
+  <!-------------------------------------->
+  <!-- The following is HTML for layout -->
+  <!-------------------------------------->
+  <!-- Header Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="">Teach 2 Teach</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">Login/Signup</a>
+        </li>
+        <li class="nav-item d-none" id="sign-out">
+          <a class="nav-link" href="login.html">Logout</a>
+        </li>
+      </ul>
     </div>
-    <footer
-      class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom"
-    >
-      <div class="container py-3">
-        <a href="index.html"><img src="./images/icon-home.png" /></a>
-        <a href="search.html"><img src="./images/icon-search.png" /></a>
-        <img src="./images/icon-plus.png" id="bottom-icon-add" />
-        <img src="./images/icon-bookmark-1.png" />
-        <img src="./images/icon-contacts.png" />
-      </div>
-    </footer>
+  </nav>
 
-    <!---   Search Main Body   -->
+  <!-- Bottom Navigation Bar -->
+  <div class="fixed-bottom py-3 bg-info">
+    <div class="container text-center">My Sticky Footer</div>
+  </div>
+  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom">
+    <div class="container py-3">
+      <a href="index.html"><img src="./images/icon-home.png" /></a>
+      <a href="search.html"><img src="./images/icon-search.png" /></a>
+      <img src="./images/icon-plus.png" id="bottom-icon-add" />
+      <img src="./images/icon-bookmark-1.png" />
+      <img src="./images/icon-contacts.png" />
+    </div>
+  </footer>
 
-    <div class="container">
-      <br />
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-          <div class="card card-sm">
-            <div class="card-body row no-gutters align-items-center">
-              <div class="col-auto">
-                <i class="fas fa-search h4 text-body"></i>
-              </div>
-              <!--end of col-->
-              <div class="col">
-                <input
-                  class="form-control form-control-lg form-control-borderless"
-                  type="search"
-                  placeholder="Search keywords for your education"
-                />
-              </div>
-              <!--end of col-->
-              <div class="col-auto">
-                <button class="btn btn-lg btn-info" id="search-post">
-                  Search
-                </button>
-              </div>
-              <!--end of col-->
+  <!---   Search Main Body   -->
+
+  <div class="container">
+    <br />
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="card card-sm">
+          <div class="card-body row no-gutters align-items-center">
+            <div class="col-auto">
+              <i class="fas fa-search h4 text-body"></i>
             </div>
+            <!--end of col-->
+            <div class="col">
+              <input class="form-control form-control-lg form-control-borderless" type="search"
+                placeholder="Search keywords for your education" />
+            </div>
+            <!--end of col-->
+            <div class="col-auto">
+              <button class="btn btn-lg btn-info" id="search-post">
+                Search
+              </button>
+            </div>
+            <!--end of col-->
           </div>
         </div>
-        <!--end of col-->
       </div>
+      <!--end of col-->
     </div>
-</div>
+  </div>
+  </div>
 
-    <!-- Tag badges -->
- <div class="popular-subject">
-     <div class="badge rounded-pill bg-secondary text-white mr-1">
-        math miniquiz
+  <!-- Tag badges -->
+  <div class="popular-subject">
+    <div class="badge rounded-pill bg-secondary text-white mr-1">
+      math miniquiz
     </div>
     <div class="badge rounded-pill bg-secondary text-white mr-1">
-        1510 python lab7
+      1510 python lab7
     </div>
     <div class="badge rounded-pill bg-secondary text-white mr-1">
-        online class
+      online class
     </div>
-</div>
-    
-    <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, API related    -->
-    <!----------------------------------------------->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    <script src="./scripts/firebase.js"></script>
+  </div>
 
-    <!--------------------------------------------------------------------->
-    <!-- JS files: Your own JavaScript functions included here    -->
-    <!--------------------------------------------------------------------->
-    <script src="./scripts/common-snipshet.js"></script>
-    <script src="./scripts/common-features.js"></script>
-    <script src="./scripts/search.js"></script>
-   
-  </body>
+  <!----------------------------------------------->
+  <!-- JS: Boostrap, Firebase, API related    -->
+  <!----------------------------------------------->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+  <script src="./scripts/firebase.js"></script>
+
+  <!--------------------------------------------------------------------->
+  <!-- JS files: Your own JavaScript functions included here    -->
+  <!--------------------------------------------------------------------->
+  <script src="./scripts/common-snipshet.js"></script>
+  <script src="./scripts/common-features.js"></script>
+  <script src="./scripts/search.js"></script>
+
+</body>
+
 </html>
