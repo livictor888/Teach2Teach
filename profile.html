@@ -46,59 +46,60 @@
 
 
     <!-- Profile Page: name, email, password, date of birth, -->
+    <div class="flex-container">
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Name</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+            </div>
+            <input type="text" id="name" class="form-control" placeholder="Display Name" aria-label="Display Name"
+                aria-describedby="basic-addon1" readonly>
         </div>
-        <input type="text" id="name" class="form-control" placeholder="Display Name" aria-label="Display Name"
-            aria-describedby="basic-addon1" readonly >
-    </div>
 
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Email</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+            </div>
+            <input type="text" id="email" class="form-control" placeholder="hello@hello.com" aria-label="Display Name"
+                aria-describedby="basic-addon1" readonly>
         </div>
-        <input type="text" id="email" class="form-control" placeholder="hello@hello.com" aria-label="Display Name"
-            aria-describedby="basic-addon1" readonly>
-    </div>
 
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Bio</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Bio</span>
+            </div>
+            <textarea id="bio" class="form-control" placeholder="Write something about yourself."
+                aria-label="With textarea" readonly></textarea>
         </div>
-        <textarea id="bio" class="form-control" placeholder="Write something about yourself."
-            aria-label="With textarea" readonly></textarea>
-    </div>
 
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Location</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Location</span>
+            </div>
+            <input type="text" id="location" class="form-control" placeholder="Vancouver" aria-label="Display Name"
+                aria-describedby="basic-addon1" readonly>
         </div>
-        <input type="text" id="location" class="form-control" placeholder="Vancouver" aria-label="Display Name"
-            aria-describedby="basic-addon1" readonly>
-    </div>
 
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Favorite Subject</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Favorite Subject</span>
+            </div>
+            <input type="text" id="favsub" class="form-control" placeholder="English" aria-label="Display Name"
+                aria-describedby="basic-addon1" readonly>
         </div>
-        <input type="text" id="favsub" class="form-control" placeholder="English" aria-label="Display Name"
-            aria-describedby="basic-addon1" readonly>
-    </div>
-    <!-- TO DO: BIRTHDAY, LOCATION
-    -->
 
-    <button id="EditProfileButton" onclick="letUserEdit()" class="btn-primary">Edit Profile</button>
-    <button id="UpdateProfileButton" onclick="letUserUpdate()" class="btn-primary">Update</button>
-    <!-- TO DO: cancel button
+        <button id="EditProfileButton" onclick="letUserEdit()" class="btn-primary">Edit Profile</button>
+        <button id="UpdateProfileButton" onclick="letUserUpdate()" class="btn-primary">Update</button>
+        <!-- TO DO: cancel button
     <button id="CancelProfileButton" onclick="letUserCancel()" class="btn-primary">Cancel</button>
     -->
+    </div>
 
+    
     <!-- Bottom Navigation Bar -->
     <div class="fixed-bottom py-3 bg-info">
         <div class="container text-center">My Sticky Footer</div>
@@ -137,7 +138,7 @@
     <script src="./scripts/common-snipshet.js"></script>
     <script src="./scripts/common-features.js"></script>
     <script src="./scripts/profile.js"></script>
-    
+
 
 </body>
 
