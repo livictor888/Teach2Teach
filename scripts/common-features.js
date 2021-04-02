@@ -16,11 +16,6 @@ function addSignoutToTopBar(currentUser) {
         });
     });
   }
-
-  const profileButton = document.querySelector("#sign-out");
-
-  if (signoutButton) {
-  }
 }
 
 function addNavBarFeature(currentUser) {
@@ -46,8 +41,24 @@ function addNavBarFeature(currentUser) {
   }
 
   // Profile Icon
+  const profileIcon = document.querySelector("#bottom-icon-profile");
+  if (profileIcon) {
+    profileIcon.addEventListener("click", function () {
+      if (currentUser) {
+        window.location.href = "./profile.html";
+      } else {
+        window.location.href = "./login.html";
+      }
+    });
+  }
 
   // Search Icon
+  const searchIcon = document.querySelector("#bottom-icon-search");
+  if (searchIcon) {
+    searchIcon.addEventListener("click", function () {
+      window.location.href = "./search.html";
+    });
+  }
 }
 
 let CURRENT_USER = undefined;
