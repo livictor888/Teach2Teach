@@ -22,6 +22,14 @@
           const commentElem = document.createElement("div");
           let commentSection = "";
           let promises = [];
+
+          // Insert total number of comments
+          document.querySelector("#post-number-of-comments").innerText =
+            querySnapshot.size > 1
+              ? `${querySnapshot.size} comments`
+              : `${querySnapshot.size} comment`;
+
+          // Insert each comments
           querySnapshot.forEach((doc, index) => {
             const commentDoc = doc.data();
 
@@ -47,7 +55,7 @@
                 </div>
                 <div class="comment-like-icon-wrapper" comment_id="${doc.id}">
                   <img class="comment-like-icon" alt="icon-like" src="./images/${
-                    commentDoc.who_likes.includes(CURRENT_USER.uid)
+                    commentDoc.who_likes.includes((CURRENT_USER || {}).uid)
                       ? "icon-like-solid.png"
                       : "icon-like-frame.png"
                   }"/>
@@ -105,27 +113,6 @@
         </div>
       </div>
 
-      <!-- Rating, views and sharing -->
-      <div class="d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-          <div class="d-flex align-items-center">
-            <ul class="list-inline rating-list">
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star yellow"></i></li>
-              <li><i class="fa fa-star gray"></i></li>
-            </ul>
-          </div>
-          <div>
-            <p class="small pl-3">3456 Reviews</p>
-          </div>
-        </div>
-        <div>
-          <img class="icon" src="./images/icon-sharing.png" alt="icon-sharing" />
-        </div>
-      </div>
-
       <!-- Content -->
       <div class="my-2">${post.content}</div>
 
@@ -137,7 +124,7 @@
         </div>
         <div class="d-flex align-items-center ml-3 flex-1">
           <img class="icon" src="./images/icon-comment.png" alt="icon-sharing" />
-          <p class="ml-2">254 comments</p>
+          <p class="ml-2" id="post-number-of-comments"></p>
         </div>
         <div class="d-flex align-items-center">
           <img class="icon-bookmark" src="./images/icon-bookmark.png" alt="icon-bookmark" />
@@ -184,6 +171,9 @@
 
     elements.forEach((element) => {
       element.addEventListener("click", () => {
+        if (!CURRENT_USER || !CURRENT_USER.uid) {
+          return;
+        }
         // Get comment ref
         const commentRef = db
           .collection("comments")

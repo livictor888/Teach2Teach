@@ -38,11 +38,8 @@
   </nav>
 
   <!-- Bottom Navigation Bar -->
-  <div class="fixed-bottom py-3 bg-info">
-    <div class="container text-center">My Sticky Footer</div>
-  </div>
-  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom">
-    <div class="container py-3">
+  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom" style="height: 56px;">
+    <div class="container">
       <a href="index.html"><img src="./images/icon-home.png" id="bottom-icon-home" /></a>
       <img src="./images/icon-search.png" id="bottom-icon-search" />
       <img src="./images/icon-plus.png" id="bottom-icon-add" />
@@ -52,34 +49,34 @@
   </footer>
 
   <!---   Search Main Body   -->
-
-  <div class="container">
-    <br />
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8">
-        <div class="card card-sm">
-          <div class="card-body row no-gutters align-items-center">
-            <div class="col-auto">
-              <i class="fas fa-search h4 text-body"></i>
+  <div style="width: 100%; padding-bottom: 56px;">
+    <div class="container">
+      <br />
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+              <div class="col-auto">
+                <i class="fas fa-search h4 text-body"></i>
+              </div>
+              <!--end of col-->
+              <div class="col">
+                <input class="form-control form-control-lg form-control-borderless" type="search"
+                  placeholder="Search keywords for your education" />
+              </div>
+              <!--end of col-->
+              <div class="col-auto">
+                <button class="btn btn-lg btn-info" id="search-post">
+                  Search
+                </button>
+              </div>
+              <!--end of col-->
             </div>
-            <!--end of col-->
-            <div class="col">
-              <input class="form-control form-control-lg form-control-borderless" type="search"
-                placeholder="Search keywords for your education" />
-            </div>
-            <!--end of col-->
-            <div class="col-auto">
-              <button class="btn btn-lg btn-info" id="search-post">
-                Search
-              </button>
-            </div>
-            <!--end of col-->
           </div>
         </div>
+        <!--end of col-->
       </div>
-      <!--end of col-->
     </div>
-  </div>
   </div>
 
   <!-- Tag badges -->

@@ -1,0 +1,10 @@
+.tag-select {
+  width: 100%;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px;
+}
+
+.error-line {
+  border: 2px solid red;
+}

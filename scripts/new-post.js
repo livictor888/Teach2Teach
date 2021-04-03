@@ -7,6 +7,9 @@
         .add({
           title: post.title,
           content: post.content,
+          tag: post.tag,
+          likes: 0,
+          who_likes: [],
           date_created: Date.now(),
         })
         .then((docRef) => {
@@ -24,14 +27,27 @@
     newPostSubmitButton.addEventListener("click", async function () {
       const postTitle = document.querySelector("#new-post-title").value;
       const postContent = document.querySelector("#new-post-content").value;
+      const postTag = document.querySelector("#new-post-tag").value;
+
+      toggleError("new-post-title", postTitle);
+      toggleError("new-post-content", postContent);
+      toggleError("new-post-tag", postTag);
 
       if (postTitle && postContent) {
-        const a = await uploadNewPost({
+        await uploadNewPost({
           title: postTitle,
           content: postContent,
+          tag: postTag,
         });
-        console.log(a);
       }
     });
+
+    function toggleError(id, value) {
+      if (value) {
+        document.querySelector(`#${id}`).classList.remove("error-line");
+      } else {
+        document.querySelector(`#${id}`).classList.add("error-line");
+      }
+    }
   };
 })();

@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
   <!-- Optional styles and scripts of your own -->
-
+  <link rel="stylesheet" href="./styles/new-post.css">
 
 </head>
 
@@ -40,11 +40,8 @@
   </nav>
 
   <!-- Bottom Navigation Bar -->
-  <div class="fixed-bottom py-3 bg-info">
-    <div class="container text-center">My Sticky Footer</div>
-  </div>
-  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom">
-    <div class="container py-3">
+  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom" style="height: 56px;">
+    <div class="container">
       <a href="index.html"><img src="./images/icon-home.png" id="bottom-icon-home" /></a>
       <img src="./images/icon-search.png" id="bottom-icon-search" />
       <img src="./images/icon-plus.png" id="bottom-icon-add" />
@@ -54,16 +51,28 @@
   </footer>
 
   <!-- Content -->
-  <div class="container">
-    <div class="my-3 h5">Create New Post</div>
-    <div class="h6">Title</div>
-    <input id="new-post-title" class="w-100 rounded p-1" placeholder="Post title" />
-    <div class="h6 my-3">Content</div>
-    <textarea id="new-post-content" class="w-100 rounded content p-1" placeholder="Post content"
-      rows="9"></textarea><br />
-    <div class="d-flex justify-content-end my-3">
-      <button class="mr-3 btn btn-dark">Discard</button>
-      <button id="new-post-submit-btn" class="btn btn-info">Submit</button>
+  <div style="width: 100%; padding-bottom: 56px;">
+    <div class="container">
+      <div class="my-3 h5">Create New Post</div>
+      <div class="h6">Title</div>
+      <input id="new-post-title" class="w-100 rounded p-1" placeholder="Post title" />
+      <div class="h6 mt-3">Tag</div>
+      <select id="new-post-tag" name="tag" class="tag-select">
+        <option value="" disabled selected>Select a tag</option>
+        <option value="Communication">Communication</option>
+        <option value="Entertainment Tips">Entertainment Tips</option>
+        <option value="Creative Content">Creative Content</option>
+        <option value="Planning and Organisation">Planning and Organisation</option>
+        <option value="Time Management">Time Management</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="h6 mt-3">Content</div>
+      <textarea id="new-post-content" class="w-100 rounded content p-1" placeholder="Post content"
+        rows="9"></textarea><br />
+      <div class="d-flex justify-content-end my-3">
+        <button class="mr-3 btn btn-dark">Discard</button>
+        <button id="new-post-submit-btn" class="btn btn-info">Submit</button>
+      </div>
     </div>
   </div>
 
