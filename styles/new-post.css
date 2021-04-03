@@ -1,8 +1,29 @@
+.tag-wrapper {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.tag-chosen {
+  line-height: 2em;
+}
+
 .tag-select {
   width: 100%;
-  border-radius: 5px;
+  border: 0;
   background-color: white;
   padding: 5px;
+  outline: none;
+}
+
+.tag-bubble {
+  padding: 0 5px;
+  background-color: #0466c8;
+  color: white;
+  border-radius: 5px;
+  margin: 2px;
+  display: inline-block;
 }
 
 .error-line {

@@ -57,15 +57,20 @@
       <div class="h6">Title</div>
       <input id="new-post-title" class="w-100 rounded p-1" placeholder="Post title" />
       <div class="h6 mt-3">Tag</div>
-      <select id="new-post-tag" name="tag" class="tag-select">
-        <option value="" disabled selected>Select a tag</option>
-        <option value="Communication">Communication</option>
-        <option value="Entertainment Tips">Entertainment Tips</option>
-        <option value="Creative Content">Creative Content</option>
-        <option value="Planning and Organisation">Planning and Organisation</option>
-        <option value="Time Management">Time Management</option>
-        <option value="Other">Other</option>
-      </select>
+
+      <div class="tag-wrapper" id="tag-wrapper">
+        <div class="tag-chosen m-1"></div>
+        <select id="new-post-tag" name="tag" class="tag-select">
+          <option value="" disabled selected>Select a tag</option>
+          <option value="Communication">Communication</option>
+          <option value="Entertainment Tips">Entertainment Tips</option>
+          <option value="Creative Content">Creative Content</option>
+          <option value="Planning and Organisation">Planning and Organisation</option>
+          <option value="Time Management">Time Management</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
       <div class="h6 mt-3">Content</div>
       <textarea id="new-post-content" class="w-100 rounded content p-1" placeholder="Post content"
         rows="9"></textarea><br />
