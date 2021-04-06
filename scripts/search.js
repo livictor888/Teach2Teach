@@ -4,5 +4,5 @@ searchButton.addEventListener("click", function () {
   showSpinner();
   console.log("50 results are searched");
 
-  setTimeout(removeSpinner, 3000);
+  setTimeout(removeSpinner, 1000);
 });
