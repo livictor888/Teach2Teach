@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.no-bookmark-post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px auto;
+  width: 50%;
+}
+
+.no-bookmark-post img {
+  width: 130px;
+  height: 130px;
+}
+
+.no-bookmark-post-text {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.bookmark-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-bookmark {
+  width: 20px;
+  height: 30px;
+}
+
+.icon-bookmark-wrapper {
+  position: absolute;
+  top: -6px;
+  right: 10px;
+}
+
+.text-read-more {
+  cursor: pointer;
+}
+
+.post-tag {
+  text-transform: lowercase;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.post-title {
+  text-transform: capitalize;
+}

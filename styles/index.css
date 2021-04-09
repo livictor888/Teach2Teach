@@ -18,6 +18,10 @@ p {
   cursor: pointer;
 }
 
+.post-tag {
+  text-transform: lowercase;
+}
+
 .flex-1 {
   flex: 1;
 }

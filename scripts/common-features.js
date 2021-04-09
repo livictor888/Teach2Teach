@@ -1,8 +1,10 @@
 // Signout
 function addSignoutToTopBar(currentUser) {
   const signoutButton = document.querySelector("#sign-out");
+  const loginButton = document.querySelector("#log-in");
 
   if (signoutButton && currentUser) {
+    loginButton.classList.add("d-none");
     signoutButton.classList.remove("d-none");
     signoutButton.addEventListener("click", () => {
       firebase
@@ -15,6 +17,9 @@ function addSignoutToTopBar(currentUser) {
           console.log(error);
         });
     });
+  } else {
+    loginButton.classList.remove("d-none");
+    signoutButton.classList.add("d-none");
   }
 }
 
@@ -46,6 +51,18 @@ function addNavBarFeature(currentUser) {
     profileIcon.addEventListener("click", function () {
       if (currentUser) {
         window.location.href = "./profile.html";
+      } else {
+        window.location.href = "./login.html";
+      }
+    });
+  }
+
+  // Bookmark Icon
+  const bookmarkIcon = document.querySelector("#bottom-icon-bookmark");
+  if (bookmarkIcon) {
+    bookmarkIcon.addEventListener("click", function () {
+      if (currentUser) {
+        window.location.href = "./bookmark.html";
       } else {
         window.location.href = "./login.html";
       }

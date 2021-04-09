@@ -2,48 +2,57 @@
   window.onload = async function () {
     showSpinner();
     const currentUser = await isUserLoggedIn();
+    if (!currentUser) return;
 
-    /**** ===== Render post detail ===== ****/
-    db.collection("posts")
-      .orderBy("date_created", "desc")
-      .onSnapshot((querySnapshot) => {
-        removeSpinner();
+    const bookmarkWrapper = document.querySelector(
+      "#bookmark-result-placeholder"
+    );
 
-        const postHomePage = document.querySelector("#homepage-content");
-        postHomePage.innerHTML = "";
+    // Query all bookmarks id
+    db.collection("users")
+      .doc(currentUser.uid)
+      .onSnapshot((snapshot) => {
+        const bookmarkIds = snapshot.data().bookmarks || [];
 
-        querySnapshot.forEach((doc) => {
-          renderNewPost({ id: doc.id, ...doc.data() });
-        });
+        if (bookmarkIds.length) {
+          // Query all bookmarked posts
+          db.collection("posts")
+            .where(firebase.firestore.FieldPath.documentId(), "in", bookmarkIds)
+            .onSnapshot((snapshotResult) => {
+              removeSpinner();
+              document.querySelector(".bookmark-title").innerText =
+                "Your bookmarks";
+
+              bookmarkWrapper.innerHTML = "";
+              snapshotResult.forEach((doc) => {
+                renderBookmarkedPosts({ ...doc.data(), id: doc.id });
+              });
+            });
+        } else {
+          removeSpinner();
+          document.querySelector(".bookmark-title").innerText =
+            "Your bookmarks";
+          bookmarkWrapper.innerHTML = `
+            <div class="no-bookmark-post">
+              <img src="./images/icon-warning.jpg" alt="warning" />
+              <div class="no-bookmark-post-text">
+                You currently don't have any bookmark posted
+              </div>
+            </div>
+          `;
+        }
       });
 
-    /**** ===== Navigate to post detail ===== ****/
-    const postTitle = document.querySelectorAll(".post-title");
-    const postReadmore = document.querySelectorAll(".post-readmore");
-    const postContent = document.querySelectorAll(".post-content");
-
-    function navigateToPostDetail() {
-      window.location.href = "./post-detail.html";
-    }
-
-    postTitle.forEach((elem) => {
-      elem.addEventListener("click", navigateToPostDetail);
-    });
-    postReadmore.forEach((elem) => {
-      elem.addEventListener("click", navigateToPostDetail);
-    });
-    postContent.forEach((elem) => {
-      elem.addEventListener("click", navigateToPostDetail);
-    });
-
-    /**** ===== Helper functions ===== ****/
-    async function renderNewPost(post) {
-      const postHomePage = document.querySelector("#homepage-content");
-
+    // Render bookmark post
+    function renderBookmarkedPosts(post) {
       // Container
+      const containerWrapper = document.createElement("div");
+      containerWrapper.setAttribute("class", "card mx-2 my-2");
+      containerWrapper.setAttribute("id", `post-card-${post.id}`);
       const container = document.createElement("div");
       container.setAttribute("class", "container-fluid my-3");
-      postHomePage.appendChild(container);
+      containerWrapper.appendChild(container);
+      bookmarkWrapper.appendChild(containerWrapper);
       container.addEventListener("click", () => {
         window.location.href = `./post-detail.html?post_id=${post.id}`;
       });
@@ -70,7 +79,7 @@
       // Content
       const postContentElem = document.createElement("div");
       postContentElem.setAttribute("class", "my-2 post-content");
-      const formattedContent = shortenContent(post.content);
+      const formattedContent = shortenContent(post.content, 150);
       postContentElem.innerHTML = `
         <p>${formattedContent}
           ${
@@ -93,7 +102,7 @@
               id="post-like-icon-${post.id}"
               class="icon"
               src="./images/${
-                (post.who_likes || []).includes((currentUser || {}).uid)
+                (post.who_likes || []).includes((CURRENT_USER || {}).uid)
                   ? "icon-heart-solid"
                   : "icon-heart-frame"
               }.png"
@@ -105,19 +114,16 @@
             <img class="icon" src="./images/icon-comment.png" alt="icon-sharing" />
             <p class="ml-2">${post.comments || 0} Comments</p>
           </div>
-          <div class="d-flex align-items-center" id="post-bookmark-${post.id}">
+          <div class="d-flex align-items-center icon-bookmark-wrapper" id="post-bookmark-${
+            post.id
+          }">
+            <img class="icon-bookmark" src="./images/icon-bookmark-solid.png" alt="icon-bookmark" />
           </div>
       `;
+
       container.appendChild(interactionElem);
       addClickEventToLikeIcon(post);
       addClickEventToBookmarkIcon(post);
-
-      // Separated line
-      const line = document.createElement("div");
-      line.setAttribute("class", "bg-secondary w-100 separated-line");
-      container.parentNode.appendChild(line);
-
-      await renderBookmarkIcon(post);
     }
 
     // Add click event to like icon
@@ -126,15 +132,15 @@
       if (element) {
         element.addEventListener("click", (event) => {
           event.stopPropagation();
-          if (!currentUser) return;
+          if (!CURRENT_USER) return;
 
-          if (post.who_likes.includes(currentUser.uid)) {
+          if (post.who_likes.includes(CURRENT_USER.uid)) {
             db.collection("posts")
               .doc(post.id)
               .update({
                 likes: post.likes - 1,
                 who_likes: [
-                  ...post.who_likes.filter((id) => id !== currentUser.uid),
+                  ...post.who_likes.filter((id) => id !== CURRENT_USER.uid),
                 ],
               });
           } else {
@@ -142,42 +148,11 @@
               .doc(post.id)
               .update({
                 likes: post.likes + 1,
-                who_likes: [...post.who_likes, currentUser.uid],
+                who_likes: [...post.who_likes, CURRENT_USER.uid],
               });
           }
         });
       }
-    }
-
-    // Render Bookmark icon
-    async function renderBookmarkIcon(post) {
-      return new Promise(async (res) => {
-        const bookmarkElem = document.querySelector(
-          `#post-bookmark-${post.id}`
-        );
-
-        const currentUser = await isUserLoggedIn();
-        if (!currentUser || !bookmarkElem) return res("");
-
-        db.collection("users")
-          .doc(currentUser.uid)
-          .onSnapshot((snapshot) => {
-            const bookmarkIcon = document.createElement("img");
-            bookmarkIcon.setAttribute("class", "icon-bookmark");
-            bookmarkIcon.setAttribute(
-              "src",
-              `./images/icon-bookmark${
-                (snapshot.data().bookmarks || []).includes(post.id)
-                  ? "-solid"
-                  : ""
-              }.png`
-            );
-            bookmarkIcon.setAttribute("alt", "icon-bookmark");
-            bookmarkElem.innerHTML = "";
-            bookmarkElem.appendChild(bookmarkIcon);
-            res("");
-          });
-      });
     }
 
     // Add click event to bookmark icon
@@ -186,9 +161,13 @@
       if (bookmarkElem) {
         bookmarkElem.addEventListener("click", (event) => {
           event.stopPropagation();
-          if (!currentUser) return;
+          if (!CURRENT_USER) return;
 
-          clickBookMarkPost(post, currentUser.uid);
+          const postCard = document.querySelector(`#post-card-${post.id}`);
+          postCard.classList.add("animate__animated");
+          postCard.classList.add("animate__fadeOutUp");
+
+          setTimeout(() => clickBookMarkPost(post, CURRENT_USER.uid), 600);
         });
       }
     }

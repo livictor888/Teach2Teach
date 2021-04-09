@@ -11,6 +11,7 @@
           likes: 0,
           who_likes: [],
           date_created: Date.now(),
+          comments: 0,
         })
         .then((docRef) => {
           window.location.href = `./post-detail.html?post_id=${docRef.id}`;

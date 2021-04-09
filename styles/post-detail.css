@@ -81,6 +81,7 @@ p {
   align-items: center;
   justify-content: center;
 }
+
 .fa-star:before {
   content: "\f005";
 }
@@ -102,6 +103,7 @@ p {
 .rating-list li {
   padding: 0px;
 }
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;

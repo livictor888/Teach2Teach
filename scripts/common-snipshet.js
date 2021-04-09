@@ -35,7 +35,15 @@ function removeSpinner() {
  */
 const isUserLoggedIn = () =>
   new Promise((res) => {
-    firebase.auth().onAuthStateChanged((user) => res(user));
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) return res(null);
+
+      db.collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => res({ ...doc.data(), uid: user.uid, id: user.uid }))
+        .catch(() => res(null));
+    });
   });
 
 /**
@@ -95,4 +103,39 @@ function convertTimeFromThePast(time) {
   } else {
     return `${delta} s`;
   }
+}
+
+/**
+ * Shorten content
+ * @param {string} content
+ * @returns shortened content
+ */
+function shortenContent(content, size = 300) {
+  if (content.length >= 300) {
+    return content.substr(0, size) + "...";
+  } else {
+    return content;
+  }
+}
+
+/**
+ * Bookmark/Un-bookmark a post
+ * @param {*} post
+ * @param {*} user_id
+ */
+function clickBookMarkPost(post, user_id) {
+  const userDoc = db.collection("users").doc(user_id);
+  userDoc.get().then((doc) => {
+    const currentBookmarkList = (doc.data() || {}).bookmarks || [];
+
+    if (currentBookmarkList.includes(post.id)) {
+      userDoc.update({
+        bookmarks: [...currentBookmarkList.filter((id) => id !== post.id)],
+      });
+    } else {
+      userDoc.update({
+        bookmarks: [...currentBookmarkList, post.id],
+      });
+    }
+  });
 }
