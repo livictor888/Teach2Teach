@@ -1,126 +1,185 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Teach 2 Teach</title>
-    <meta name="comp1800 boilerplate code" content="my bcit project">
-    <meta name="author" content="BCIT">
+    <meta name="comp1800 boilerplate code" content="my bcit project" />
+    <meta name="author" content="BCIT" />
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="./styles/profile.css" />
+  </head>
 
-
-</head>
-
-<body>
-
+  <body>
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
     <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="/">Teach 2 Teach</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login/Signup</a>
-                </li>
-                <li class="nav-item d-none" id="sign-out">
-                    <a class="nav-link" href="login.html">Logout</a>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="nav">
+      <a class="navbar-brand" href="/">Teach 2 Teach</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login/Signup</a>
+          </li>
+          <li class="nav-item d-none" id="sign-out">
+            <a class="nav-link" href="login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
-
-
     <!-- Profile Page: name, email, password, date of birth, -->
-    <div style="width: 100%; padding-bottom: 56px;">
-        <div class="flex-container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Name</span>
-                </div>
-                <input type="text" id="name" class="form-control" placeholder="Display Name" aria-label="Display Name"
-                    aria-describedby="basic-addon1" readonly>
-            </div>
+    <div style="width: 100%; padding-bottom: 56px">
+      <div class="flex-container">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+          </div>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Display Name"
+            aria-label="Display Name"
+            aria-describedby="basic-addon1"
+            readonly
+          />
+        </div>
 
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Email</span>
+          </div>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            placeholder="hello@hello.com"
+            aria-label="Display Name"
+            aria-describedby="basic-addon1"
+            readonly
+          />
+        </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Email</span>
-                </div>
-                <input type="text" id="email" class="form-control" placeholder="hello@hello.com"
-                    aria-label="Display Name" aria-describedby="basic-addon1" readonly>
-            </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Bio</span>
+          </div>
+          <textarea
+            id="bio"
+            class="form-control"
+            placeholder="Write something about yourself."
+            aria-label="With textarea"
+            readonly
+          ></textarea>
+        </div>
 
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Location</span>
+          </div>
+          <input
+            type="text"
+            id="location"
+            class="form-control"
+            placeholder="Vancouver"
+            aria-label="Display Name"
+            aria-describedby="basic-addon1"
+            readonly
+          />
+        </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Bio</span>
-                </div>
-                <textarea id="bio" class="form-control" placeholder="Write something about yourself."
-                    aria-label="With textarea" readonly></textarea>
-            </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"
+              >Favorite Subject</span
+            >
+          </div>
+          <input
+            type="text"
+            id="favsub"
+            class="form-control"
+            placeholder="English"
+            aria-label="Display Name"
+            aria-describedby="basic-addon1"
+            readonly
+          />
+        </div>
 
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Location</span>
-                </div>
-                <input type="text" id="location" class="form-control" placeholder="Vancouver" aria-label="Display Name"
-                    aria-describedby="basic-addon1" readonly>
-            </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Favorite Subject</span>
-                </div>
-                <input type="text" id="favsub" class="form-control" placeholder="English" aria-label="Display Name"
-                    aria-describedby="basic-addon1" readonly>
-            </div>
-
-            <button id="EditProfileButton" onclick="letUserEdit()" class="btn-primary">Edit Profile</button>
-            <button id="UpdateProfileButton" onclick="letUserUpdate()" class="btn-primary">Update</button>
-            <!-- TO DO: cancel button
+        <button
+          id="EditProfileButton"
+          onclick="letUserEdit()"
+          class="btn-primary"
+        >
+          Edit Profile
+        </button>
+        <button
+          id="UpdateProfileButton"
+          onclick="letUserUpdate()"
+          class="btn-primary"
+        >
+          Update
+        </button>
+        <!-- TO DO: cancel button
     <button id="CancelProfileButton" onclick="letUserCancel()" class="btn-primary">Cancel</button>
     -->
-        </div>
+      </div>
     </div>
 
-
     <!-- Bottom Navigation Bar -->
-    <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom" style="height: 56px;">
-        <div class="container">
-            <a href="index.html"><img src="./images/icon-home.png" id="bottom-icon-home" /></a>
-            <img src="./images/icon-search.png" id="bottom-icon-search" />
-            <img src="./images/icon-plus.png" id="bottom-icon-add" />
-            <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
-            <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
-        </div>
+    <footer
+      class="navbar justify-content-evenly navbar-dark fixed-bottom"
+      style="height: 56px"
+      id="nav"
+    >
+      <div class="container">
+        <a href="index.html"
+          ><img src="./images/icon-home.png" id="bottom-icon-home"
+        /></a>
+        <img src="./images/icon-search.png" id="bottom-icon-search" />
+        <img src="./images/icon-plus.png" id="bottom-icon-add" />
+        <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
+        <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
+      </div>
     </footer>
 
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
     <!----------------------------------------------->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
@@ -134,8 +193,5 @@
     <script src="./scripts/common-snipshet.js"></script>
     <script src="./scripts/common-features.js"></script>
     <script src="./scripts/profile.js"></script>
-
-
-</body>
-
+  </body>
 </html>

@@ -31,3 +31,8 @@ p {
   margin-top: 5px;
   width: 100vw;
 }
+
+#nav {
+  background-color: #185d8b;
+  color: white;
+}

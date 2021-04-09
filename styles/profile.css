@@ -1,24 +1,29 @@
-.flex-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 1em;
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
 }
 
-.btn-primary{
-    border-radius: 10px;
-    margin: 20 px;
+.btn-primary {
+  border-radius: 10px;
+  margin: 20 px;
 }
 
-#EditProfileButton{
-    visibility: visable;
+#EditProfileButton {
+  visibility: visable;
 }
 
-#UpdateProfileButton{
-    visibility: hidden;
+#UpdateProfileButton {
+  visibility: hidden;
 }
 
-#CancelProfileButton{
-    visibility: hidden;
+#CancelProfileButton {
+  visibility: hidden;
+}
+
+#nav {
+  background-color: #185d8b;
+  color: white;
 }

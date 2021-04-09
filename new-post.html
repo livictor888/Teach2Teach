@@ -1,112 +1,141 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Teach 2 Teach</title>
+    <meta name="comp1800 boilerplate code" content="my bcit project" />
+    <meta name="author" content="BCIT" />
 
-<head>
-  <meta charset="utf-8">
-  <title>Teach 2 Teach</title>
-  <meta name="comp1800 boilerplate code" content="my bcit project">
-  <meta name="author" content="BCIT">
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
-  <!-- Bootstrap for Mobile-first, and JQuery -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Optional styles and scripts of your own -->
+    <link rel="stylesheet" href="./styles/new-post.css" />
+  </head>
 
-  <!-- Optional styles and scripts of your own -->
-  <link rel="stylesheet" href="./styles/new-post.css">
-
-</head>
-
-<body>
-
-  <!-------------------------------------->
-  <!-- The following is HTML for layout -->
-  <!-------------------------------------->
-  <!-- Header Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="/">Teach 2 Teach</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="login.html">Login/Signup</a>
-        </li>
-        <li class="nav-item d-none" id="sign-out">
-          <a class="nav-link" href="login.html">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Bottom Navigation Bar -->
-  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom" style="height: 56px;">
-    <div class="container">
-      <a href="index.html"><img src="./images/icon-home.png" id="bottom-icon-home" /></a>
-      <img src="./images/icon-search.png" id="bottom-icon-search" />
-      <img src="./images/icon-plus.png" id="bottom-icon-add" />
-      <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
-      <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
-    </div>
-  </footer>
-
-  <!-- Content -->
-  <div style="width: 100%; padding-bottom: 56px;">
-    <div class="container">
-      <div class="my-3 h5">Create New Post</div>
-      <div class="h6">Title</div>
-      <input id="new-post-title" class="w-100 rounded p-1" placeholder="Post title" />
-      <div class="h6 mt-3">Tag</div>
-
-      <div class="tag-wrapper" id="tag-wrapper">
-        <div class="tag-chosen m-1"></div>
-        <select id="new-post-tag" name="tag" class="tag-select">
-          <option value="" disabled selected>Select a tag</option>
-          <option value="Communication">Communication</option>
-          <option value="Entertainment Tips">Entertainment Tips</option>
-          <option value="Creative Content">Creative Content</option>
-          <option value="Planning and Organisation">Planning and Organisation</option>
-          <option value="Time Management">Time Management</option>
-          <option value="Other">Other</option>
-        </select>
+  <body>
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="nav">
+      <a class="navbar-brand" href="/">Teach 2 Teach</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login/Signup</a>
+          </li>
+          <li class="nav-item d-none" id="sign-out">
+            <a class="nav-link" href="login.html">Logout</a>
+          </li>
+        </ul>
       </div>
+    </nav>
 
-      <div class="h6 mt-3">Content</div>
-      <textarea id="new-post-content" class="w-100 rounded content p-1" placeholder="Post content"
-        rows="9"></textarea><br />
-      <div class="d-flex justify-content-end my-3">
-        <button class="mr-3 btn btn-dark">Discard</button>
-        <button id="new-post-submit-btn" class="btn btn-info">Submit</button>
+    <!-- Bottom Navigation Bar -->
+    <footer
+      class="navbar justify-content-evenly navbar-dark fixed-bottom"
+      style="height: 56px"
+      id="nav"
+    >
+      <div class="container">
+        <a href="index.html"
+          ><img src="./images/icon-home.png" id="bottom-icon-home"
+        /></a>
+        <img src="./images/icon-search.png" id="bottom-icon-search" />
+        <img src="./images/icon-plus.png" id="bottom-icon-add" />
+        <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
+        <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
+      </div>
+    </footer>
+
+    <!-- Content -->
+    <div style="width: 100%; padding-bottom: 56px">
+      <div class="container">
+        <div class="my-3 h5">Create New Post</div>
+        <div class="h6">Title</div>
+        <input
+          id="new-post-title"
+          class="w-100 rounded p-1"
+          placeholder="Post title"
+        />
+        <div class="h6 mt-3">Tag</div>
+
+        <div class="tag-wrapper" id="tag-wrapper">
+          <div class="tag-chosen m-1"></div>
+          <select id="new-post-tag" name="tag" class="tag-select">
+            <option value="" disabled selected>Select a tag</option>
+            <option value="Communication">Communication</option>
+            <option value="Entertainment Tips">Entertainment Tips</option>
+            <option value="Creative Content">Creative Content</option>
+            <option value="Planning and Organisation">
+              Planning and Organisation
+            </option>
+            <option value="Time Management">Time Management</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="h6 mt-3">Content</div>
+        <textarea
+          id="new-post-content"
+          class="w-100 rounded content p-1"
+          placeholder="Post content"
+          rows="9"
+        ></textarea
+        ><br />
+        <div class="d-flex justify-content-end my-3">
+          <button class="mr-3 btn btn-dark">Discard</button>
+          <button id="new-post-submit-btn" class="btn btn-info">Submit</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!----------------------------------------------->
-  <!-- JS: Boostrap, Firebase, API related    -->
-  <!----------------------------------------------->
-  <script src=" https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-  <script src="./scripts/firebase.js"></script>
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script
+      src=" https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="./scripts/firebase.js"></script>
 
-  <!--------------------------------------------------------------------->
-  <!-- JS files: Your own JavaScript functions included here    -->
-  <!--------------------------------------------------------------------->
-  <script src="./scripts/common-snipshet.js"></script>
-  <script src="./scripts/common-features.js"></script>
-  <script src="./scripts/new-post.js"></script>
-
-</body>
-
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script src="./scripts/common-snipshet.js"></script>
+    <script src="./scripts/common-features.js"></script>
+    <script src="./scripts/new-post.js"></script>
+  </body>
 </html>

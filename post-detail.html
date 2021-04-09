@@ -1,219 +1,295 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Teach 2 Teach</title>
+    <meta name="comp1800 boilerplate code" content="my bcit project" />
+    <meta name="author" content="BCIT" />
 
-<head>
-  <meta charset="utf-8" />
-  <title>Teach 2 Teach</title>
-  <meta name="comp1800 boilerplate code" content="my bcit project" />
-  <meta name="author" content="BCIT" />
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Bootstrap for Mobile-first, and JQuery -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Optional styles and scripts of your own -->
+    <link rel="stylesheet" href="./styles/post-detail.css" />
 
-  <!-- Optional styles and scripts of your own -->
-  <link rel="stylesheet" href="./styles/post-detail.css" />
+    <!-- Refactor later -->
+    <link rel="stylesheet" href="styles/share.css" />
+    <link
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      rel="stylesheet"
+    />
+    <style>
+      .modal {
+        background-image: none;
+      }
 
-  <!-- Refactor later -->
-  <link rel="stylesheet" href="styles/share.css">
-  <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' rel='stylesheet'>
-  <style>
-    .modal {
-      background-image: none
-    }
+      .modal-title {
+        font-weight: 900;
+      }
 
-    .modal-title {
-      font-weight: 900
-    }
+      .modal-content {
+        border-radius: 13px;
+      }
 
-    .modal-content {
-      border-radius: 13px
-    }
+      .modal-body {
+        color: #3b3b3b;
+      }
 
-    .modal-body {
-      color: #3b3b3b
-    }
+      .img-thumbnail {
+        border-radius: 33px;
+        width: 61px;
+        height: 61px;
+      }
 
-    .img-thumbnail {
-      border-radius: 33px;
-      width: 61px;
-      height: 61px
-    }
+      .fab:before {
+        position: relative;
+        top: 13px;
+      }
 
-    .fab:before {
-      position: relative;
-      top: 13px
-    }
+      .smd {
+        width: 200px;
+        font-size: small;
+        text-align: center;
+      }
 
-    .smd {
-      width: 200px;
-      font-size: small;
-      text-align: center
-    }
+      .modal-footer {
+        display: block;
+      }
 
-    .modal-footer {
-      display: block
-    }
+      .ur {
+        border: none;
+        background-color: #e6e2e2;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+      }
 
-    .ur {
-      border: none;
-      background-color: #e6e2e2;
-      border-bottom-left-radius: 4px;
-      border-top-left-radius: 4px
-    }
+      .cpy {
+        border: none;
+        background-color: #e6e2e2;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        cursor: pointer;
+      }
 
-    .cpy {
-      border: none;
-      background-color: #e6e2e2;
-      border-bottom-right-radius: 4px;
-      border-top-right-radius: 4px;
-      cursor: pointer
-    }
+      .button-share.focus,
+      .button-share:focus {
+        outline: 0;
+        box-shadow: none !important;
+      }
 
-    .button-share.focus,
-    .button-share:focus {
-      outline: 0;
-      box-shadow: none !important
-    }
+      .ur.focus,
+      .ur:focus {
+        outline: 0;
+        box-shadow: none !important;
+      }
 
-    .ur.focus,
-    .ur:focus {
-      outline: 0;
-      box-shadow: none !important
-    }
+      .message {
+        font-size: 12px;
+        color: #ee5535;
+      }
+    </style>
+  </head>
 
-    .message {
-      font-size: 12px;
-      color: #ee5535
-    }
-  </style>
-</head>
+  <body>
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="nav">
+      <a class="navbar-brand" href="/">Teach 2 Teach</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerTopNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerTopNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login/Signup</a>
+          </li>
+          <li class="nav-item d-none" id="sign-out">
+            <a class="nav-link" href="login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-<body>
-  <!-------------------------------------->
-  <!-- The following is HTML for layout -->
-  <!-------------------------------------->
-  <!-- Header Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="/">Teach 2 Teach</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerTopNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerTopNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="login.html">Login/Signup</a>
-        </li>
-        <li class="nav-item d-none" id="sign-out">
-          <a class="nav-link" href="login.html">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Bottom Navigation Bar -->
+    <footer
+      class="navbar justify-content-evenly navbar-dark fixed-bottom"
+      style="height: 56px"
+      id="nav"
+    >
+      <div class="container">
+        <a href="index.html"
+          ><img src="./images/icon-home.png" id="bottom-icon-home"
+        /></a>
+        <img src="./images/icon-search.png" id="bottom-icon-search" />
+        <img src="./images/icon-plus.png" id="bottom-icon-add" />
+        <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
+        <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
+      </div>
+    </footer>
 
-  <!-- Bottom Navigation Bar -->
-  <footer class="navbar justify-content-evenly navbar-dark bg-dark fixed-bottom" style="height: 56px;">
-    <div class="container">
-      <a href="index.html"><img src="./images/icon-home.png" id="bottom-icon-home" /></a>
-      <img src="./images/icon-search.png" id="bottom-icon-search" />
-      <img src="./images/icon-plus.png" id="bottom-icon-add" />
-      <img src="./images/icon-bookmark-1.png" id="bottom-icon-bookmark" />
-      <img src="./images/icon-contacts.png" id="bottom-icon-profile" />
-    </div>
-  </footer>
+    <div style="width: 100%; padding-bottom: 56px">
+      <div id="post-detail-container"></div>
 
-  <div style="width: 100%; padding-bottom: 56px;">
-    <div id="post-detail-container">
-    </div>
-
-    <div oncontextmenu='return false' class='snippet-body'>
-      <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content col-12">
-            <div class="modal-header">
-              <div id="snackbar"> Share successful!</div>
-              <h5 class="modal-title">Share</h5> <button type="button" class="button-share close" data-dismiss="modal"
-                aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <div class="modal-body">
-              <div class="icon-container1 d-flex">
-                <div class="smd"> <i class=" img-thumbnail fab fa-twitter fa-2x"
-                    style="color:#4c6ef5;background-color: aliceblue"></i>
-                  <p>Twitter</p>
+      <div oncontextmenu="return false" class="snippet-body">
+        <div
+          class="modal fade"
+          id="shareModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="shareModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content col-12">
+              <div class="modal-header">
+                <div id="snackbar">Share successful!</div>
+                <h5 class="modal-title">Share</h5>
+                <button
+                  type="button"
+                  class="button-share close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="icon-container1 d-flex">
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-twitter fa-2x"
+                      style="color: #4c6ef5; background-color: aliceblue"
+                    ></i>
+                    <p>Twitter</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-facebook fa-2x"
+                      style="color: #3b5998; background-color: #eceff5"
+                    ></i>
+                    <p>Facebook</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-reddit-alien fa-2x"
+                      style="color: #ff5700; background-color: #fdd9ce"
+                    ></i>
+                    <p>Reddit</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-discord fa-2x"
+                      style="color: #738adb; background-color: #d8d8d8"
+                    ></i>
+                    <p>Discord</p>
+                  </div>
                 </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-facebook fa-2x"
-                    style="color: #3b5998;background-color: #eceff5;"></i>
-                  <p>Facebook</p>
-                </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-reddit-alien fa-2x"
-                    style="color: #FF5700;background-color: #fdd9ce;"></i>
-                  <p>Reddit</p>
-                </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-discord fa-2x "
-                    style="color: #738ADB;background-color: #d8d8d8;"></i>
-                  <p>Discord</p>
+                <div class="icon-container2 d-flex">
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-whatsapp fa-2x"
+                      style="color: #25d366; background-color: #cef5dc"
+                    ></i>
+                    <p>Whatsapp</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-facebook-messenger fa-2x"
+                      style="color: #3b5998; background-color: #eceff5"
+                    ></i>
+                    <p>Messenger</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-telegram fa-2x"
+                      style="color: #4c6ef5; background-color: aliceblue"
+                    ></i>
+                    <p>Telegram</p>
+                  </div>
+                  <div class="smd">
+                    <i
+                      class="img-thumbnail fab fa-weixin fa-2x"
+                      style="color: #7bb32e; background-color: #daf1bc"
+                    ></i>
+                    <p>WeChat</p>
+                  </div>
                 </div>
               </div>
-              <div class="icon-container2 d-flex">
-                <div class="smd"> <i class="img-thumbnail fab fa-whatsapp fa-2x"
-                    style="color: #25D366;background-color: #cef5dc;"></i>
-                  <p>Whatsapp</p>
-                </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-facebook-messenger fa-2x"
-                    style="color: #3b5998;background-color: #eceff5;"></i>
-                  <p>Messenger</p>
-                </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-telegram fa-2x"
-                    style="color: #4c6ef5;background-color: aliceblue"></i>
-                  <p>Telegram</p>
-                </div>
-                <div class="smd"> <i class="img-thumbnail fab fa-weixin fa-2x"
-                    style="color: #7bb32e;background-color: #daf1bc;"></i>
-                  <p>WeChat</p>
+              <div class="modal-footer">
+                <label style="font-weight: 600"
+                  >Page Link <span class="message"></span></label
+                ><br />
+                <div class="row">
+                  <input
+                    diabled
+                    class="col-10 ur"
+                    type="url"
+                    placeholder="Current web page address"
+                    id="myInput"
+                    aria-describedby="inputGroup-sizing-default"
+                    style="height: 40px"
+                  />
+                  <button class="button-share cpy">
+                    <i class="far fa-clone"></i>
+                  </button>
                 </div>
               </div>
-            </div>
-            <div class="modal-footer"> <label style="font-weight: 600">Page Link <span
-                  class="message"></span></label><br />
-              <div class="row"> <input diabled class="col-10 ur" type="url" placeholder="Current web page address"
-                  id="myInput" aria-describedby="inputGroup-sizing-default" style="height: 40px;"> <button
-                  class="button-share cpy"><i class="far fa-clone"></i></button> </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!----------------------------------------------->
-  <!-- JS: Boostrap, Firebase, API related    -->
-  <!----------------------------------------------->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-  <script src="./scripts/firebase.js"></script>
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="./scripts/firebase.js"></script>
 
-  <!--------------------------------------------------------------------->
-  <!-- JS files: Your own JavaScript functions included here    -->
-  <!--------------------------------------------------------------------->
-  <script src="./scripts/common-snipshet.js"></script>
-  <script src="./scripts/common-features.js"></script>
-  <script src="./scripts/post-detail.js"></script>
-  <script src="/scripts/share.js"></script>
-</body>
-
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script src="./scripts/common-snipshet.js"></script>
+    <script src="./scripts/common-features.js"></script>
+    <script src="./scripts/post-detail.js"></script>
+    <script src="/scripts/share.js"></script>
+  </body>
 </html>
