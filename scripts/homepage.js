@@ -89,7 +89,7 @@
       interactionElem.setAttribute("class", "d-flex");
       interactionElem.innerHTML = `
           <div class="d-flex align-items-center">
-            <img class="icon" src="./images/icon-like.png" alt="icon-sharing" />
+            <img class="icon" src="./images/icon-heart-frame.png" alt="icon-sharing" />
             <p class="ml-2">12 Likes</p>
           </div>
           <div class="d-flex align-items-center ml-3 flex-1">

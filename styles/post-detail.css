@@ -18,6 +18,16 @@ p {
   height: 25px;
 }
 
+.icon-share {
+  position: absolute;
+  right: 15px;
+  top: 100px;
+}
+
+.post-tag {
+  text-transform: lowercase;
+}
+
 .text-capitalized {
   text-transform: capitalize;
 }

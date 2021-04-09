@@ -89,8 +89,10 @@ function convertTimeFromThePast(time) {
   } else if (delta > 24 * 60 * 60) {
     return `${Math.floor(delta / (24 * 60 * 60))} d`;
   } else if (delta > 60 * 60) {
-    return `${Math.floor(delta / (60 * 60))} m`;
+    return `${Math.floor(delta / (60 * 60))} h`;
+  } else if (delta > 60) {
+    return `${Math.floor(delta / 60)} m`;
   } else {
-    return `${Math.floor(delta / 60)} s`;
+    return `${delta} s`;
   }
 }

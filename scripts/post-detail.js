@@ -21,18 +21,19 @@
       <!-- Title -->
       <div class="h4 text-capitalized">${post.title}</div>
 
-      <!-- Tag badges -->
-      <div class="d-flex mb-2">
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
+      <!-- Share -->
+      <div class="icon icon-share">
+        <img
+          class="icon"
+          src="./images/icon-sharing.png"
+          alt="icon-sharing"
+          data-toggle="modal"
+          data-target="#shareModal"
+        />
       </div>
+
+      <!-- Tag badges -->
+      <div id="post-tag-placeholder"></div>
 
       <!-- Content -->
       <div class="my-2">${post.content}</div>
@@ -40,11 +41,15 @@
       <!-- Post interaction -->
       <div class="d-flex">
         <div class="d-flex align-items-center">
-          <img class="icon" src="./images/icon-like.png" alt="icon-sharing" />
+          <img id="post-icon-like" class="icon" src="./images/${
+            (post.who_likes || []).includes(CURRENT_USER.uid)
+              ? "icon-heart-solid"
+              : "icon-heart-frame"
+          }.png" alt="icon-like" />
           <p class="ml-2" id="post-number-of-likes"></p>
         </div>
         <div class="d-flex align-items-center ml-3 flex-1">
-          <img class="icon" src="./images/icon-comment.png" alt="icon-sharing" />
+          <img class="icon" src="./images/icon-comment.png" alt="icon-comment" />
           <p class="ml-2" id="post-number-of-comments"></p>
         </div>
         <div class="d-flex align-items-center">
@@ -96,10 +101,29 @@
       contentElem.innerHTML = contentElemHTML;
     }
 
+    container.innerHTML = "";
     container.appendChild(contentElem);
+    renderTag(post);
+    addEventToLikePost(post);
     addEventToInputPostComment(post);
     renderLikes(post);
     await renderComments(post);
+  }
+
+  // Render tag
+  function renderTag(post) {
+    const element = document.querySelector("#post-tag-placeholder");
+    if (element) {
+      element.setAttribute("class", "d-flex flex-wrap mb-2 post-tag");
+      let content = "";
+      (post.tag || []).forEach((tag) => {
+        content += `
+          <div class="badge rounded-pill bg-secondary text-white mt-1 mr-1">
+            ${tag}
+          </div>`;
+      });
+      element.innerHTML = content;
+    }
   }
 
   // Render Like section
@@ -115,6 +139,7 @@
       // Get the comment content
       db.collection("comments")
         .where("post_id", "==", post.id)
+        .orderBy("date_created")
         .onSnapshot((querySnapshot) => {
           const commentElem = document.createElement("div");
           let commentSection = "";
@@ -165,6 +190,7 @@
           Promise.all(promises).then((userDocs) => {
             userDocs.forEach((user, index) => {
               const userData = user.data();
+
               // Insert author info to comment elements
               commentSection = commentSection.replace(
                 `<username_${user.id}>`,
@@ -189,11 +215,41 @@
     });
   }
 
+  // Event handler for like post
+  function addEventToLikePost(post) {
+    const element = document.querySelector("#post-icon-like");
+    if (element) {
+      element.addEventListener("click", (event) => {
+        if (!CURRENT_USER) return;
+
+        if (post.who_likes.includes(CURRENT_USER.uid)) {
+          db.collection("posts")
+            .doc(post.id)
+            .update({
+              likes: post.likes - 1,
+              who_likes: [
+                ...post.who_likes.filter((id) => id !== CURRENT_USER.uid),
+              ],
+            });
+        } else {
+          db.collection("posts")
+            .doc(post.id)
+            .update({
+              likes: post.likes + 1,
+              who_likes: [...post.who_likes, CURRENT_USER.uid],
+            });
+        }
+      });
+    }
+  }
+
   // Event handler for input comment
   function addEventToInputPostComment(post) {
     const element = document.querySelector("#input-post-comment");
     if (element) {
       element.addEventListener("change", (event) => {
+        if (!event.target.value) return;
+
         db.collection("comments")
           .add({
             content: event.target.value || "",

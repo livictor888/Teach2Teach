@@ -19,14 +19,6 @@
   <link rel="stylesheet" href="styles/share.css">
   <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' rel='stylesheet'>
   <style>
-    body {
-      background-color: white
-    }
-
-    .mt-100 {
-      margin-top: 100px
-    }
-
     .modal {
       background-image: none
     }
@@ -79,8 +71,8 @@
       cursor: pointer
     }
 
-    button.focus,
-    button:focus {
+    .button-share.focus,
+    .button-share:focus {
       outline: 0;
       box-shadow: none !important
     }
@@ -96,13 +88,6 @@
       color: #ee5535
     }
   </style>
-  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-  <script type='text/javascript'
-    src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-  <script type='text/javascript'>function myFunction() {
-
-      $(".message").text("link copied");
-    }</script>
 </head>
 
 <body>
@@ -112,10 +97,10 @@
   <!-- Header Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <a class="navbar-brand" href="/">Teach 2 Teach</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerTopNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <div class="collapse navbar-collapse" id="navbarTogglerTopNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="login.html">Login/Signup</a>
@@ -141,34 +126,32 @@
   <div style="width: 100%; padding-bottom: 56px;">
     <div id="post-detail-container">
     </div>
+
     <div oncontextmenu='return false' class='snippet-body'>
-      <div class='container d-flex justify-content-center mt-100'><button type="button" class="btn btn-primary mx-auto"
-          data-toggle="modal" data-target="#exampleModal"> Share </button>
-      </div>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content col-12">
             <div class="modal-header">
               <div id="snackbar"> Share successful!</div>
-              <h5 class="modal-title">Share</h5> <button type="button" class="close" data-dismiss="modal"
+              <h5 class="modal-title">Share</h5> <button type="button" class="button-share close" data-dismiss="modal"
                 aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
             <div class="modal-body">
               <div class="icon-container1 d-flex">
-                <div id='shareSuccessfulTwitter' class="smd"> <i class=" img-thumbnail fab fa-twitter fa-2x"
+                <div class="smd"> <i class=" img-thumbnail fab fa-twitter fa-2x"
                     style="color:#4c6ef5;background-color: aliceblue"></i>
                   <p>Twitter</p>
                 </div>
-                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-facebook fa-2x"
+                <div class="smd"> <i class="img-thumbnail fab fa-facebook fa-2x"
                     style="color: #3b5998;background-color: #eceff5;"></i>
                   <p>Facebook</p>
                 </div>
-                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-reddit-alien fa-2x"
+                <div class="smd"> <i class="img-thumbnail fab fa-reddit-alien fa-2x"
                     style="color: #FF5700;background-color: #fdd9ce;"></i>
                   <p>Reddit</p>
                 </div>
-                <div id='shareSuccessful' class="smd"> <i class="img-thumbnail fab fa-discord fa-2x "
+                <div class="smd"> <i class="img-thumbnail fab fa-discord fa-2x "
                     style="color: #738ADB;background-color: #d8d8d8;"></i>
                   <p>Discord</p>
                 </div>
@@ -195,8 +178,8 @@
             <div class="modal-footer"> <label style="font-weight: 600">Page Link <span
                   class="message"></span></label><br />
               <div class="row"> <input diabled class="col-10 ur" type="url" placeholder="Current web page address"
-                  id="myInput" aria-describedby="inputGroup-sizing-default" style="height: 40px;"> <button class="cpy"
-                  onclick="myFunction()"><i class="far fa-clone"></i></button> </div>
+                  id="myInput" aria-describedby="inputGroup-sizing-default" style="height: 40px;"> <button
+                  class="button-share cpy"><i class="far fa-clone"></i></button> </div>
             </div>
           </div>
         </div>
