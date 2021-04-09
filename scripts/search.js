@@ -37,12 +37,12 @@ searchButton.addEventListener("click", function () {
       const postContent = document.querySelectorAll(".post-content");
 
       function renderNewPost(post) {
-        const postHomePage = document.querySelector("#homepage-content");
+        const postSearchPage = document.querySelector("#search-content");
 
         // Container
         const container = document.createElement("div");
         container.setAttribute("class", "container-fluid my-3");
-        postHomePage.appendChild(container);
+        postSearchPage.appendChild(container);
         container.addEventListener("click", () => {
           window.location.href = `./post-detail.html?post_id=${post.id}`;
         });
