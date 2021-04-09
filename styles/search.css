@@ -17,7 +17,17 @@
   justify-content: center;
 }
 
-#resultNum {
+.resultNum {
   margin: 20px;
   text-align: center;
+}
+
+.separated-line {
+  height: 4px;
+  margin-top: 5px;
+  width: 100vw;
+}
+
+#search-content {
+  padding-bottom: 20px;
 }
