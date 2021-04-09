@@ -1,11 +1,20 @@
 const searchButton = document.getElementById("search-post");
 var showresult = document.querySelector("#result-here");
 var inputTextField = document.querySelector("#search-result");
+var resultNum = 0;
 
+/**** ===== Search the Key word =====****/
 searchButton.addEventListener("click", function () {
   showSpinner();
   db.collection("posts").onSnapshot((querySnapshot) => {
     removeSpinner();
+
+    /**** ===== Search Result ===== ****/
+    let resultNumContainer = document.createElement("div");
+    resultNumContainer.setAttribute("id", "resultNum");
+    resultNum = 0;
+    showresult.appendChild(resultNumContainer);
+
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
       if (
@@ -16,7 +25,11 @@ searchButton.addEventListener("click", function () {
       ) {
         renderNewPost({ id: doc.id, ...doc.data() });
         console.log(doc.data());
+        resultNum++;
       }
+
+      document.getElementById("resultNum").innerText =
+        resultNum + " results are founded";
 
       /**** ===== Navigate to post detail ===== ****/
       const postTitle = document.querySelectorAll(".post-title");

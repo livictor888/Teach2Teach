@@ -16,3 +16,8 @@
   display: flex;
   justify-content: center;
 }
+
+#resultNum {
+  margin: 20px;
+  text-align: center;
+}
