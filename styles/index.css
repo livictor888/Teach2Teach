@@ -22,6 +22,10 @@ p {
   flex: 1;
 }
 
+.post-title {
+  text-transform: capitalize;
+}
+
 .separated-line {
   height: 4px;
   margin-top: 5px;

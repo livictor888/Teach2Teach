@@ -74,7 +74,7 @@ function convertTimeFromFirebase(time) {
  * @returns How long from the given time until now
  */
 function convertTimeFromThePast(time) {
-  const dateInPast = convertTimeFromFirebase(time);
+  const dateInPast = time;
   if (!dateInPast) {
     return "";
   }

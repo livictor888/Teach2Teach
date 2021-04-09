@@ -66,6 +66,7 @@ let CURRENT_USER = undefined;
 // Call
 isUserLoggedIn().then((currentUser) => {
   CURRENT_USER = currentUser;
+  CURRENT_USER.id = currentUser.uid;
   addSignoutToTopBar(currentUser);
   addNavBarFeature(currentUser);
 });

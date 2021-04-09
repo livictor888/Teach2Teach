@@ -12,7 +12,104 @@
       });
   };
 
-  /**** ===== Helper functions ===== ****/
+  // Render post detail
+  async function renderPostDetail(post) {
+    const container = document.querySelector("#post-detail-container");
+    const contentElem = document.createElement("div");
+    contentElem.setAttribute("class", "container-fluid my-3");
+    contentElemHTML = `
+      <!-- Title -->
+      <div class="h4 text-capitalized">${post.title}</div>
+
+      <!-- Tag badges -->
+      <div class="d-flex mb-2">
+        <div class="badge rounded-pill bg-secondary text-white mr-1">
+          lorem ipsum
+        </div>
+        <div class="badge rounded-pill bg-secondary text-white mr-1">
+          lorem ipsum
+        </div>
+        <div class="badge rounded-pill bg-secondary text-white mr-1">
+          lorem ipsum
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="my-2">${post.content}</div>
+
+      <!-- Post interaction -->
+      <div class="d-flex">
+        <div class="d-flex align-items-center">
+          <img class="icon" src="./images/icon-like.png" alt="icon-sharing" />
+          <p class="ml-2" id="post-number-of-likes"></p>
+        </div>
+        <div class="d-flex align-items-center ml-3 flex-1">
+          <img class="icon" src="./images/icon-comment.png" alt="icon-sharing" />
+          <p class="ml-2" id="post-number-of-comments"></p>
+        </div>
+        <div class="d-flex align-items-center">
+          <img class="icon-bookmark" src="./images/icon-bookmark.png" alt="icon-bookmark" />
+        </div>
+      </div>
+      <div class="bg-secondary w-100 mt-3 mb-2" style="height: 2px"></div>
+
+      <!-- Comment section -->
+      <div id="post-comment-wrapper">
+      </div>
+
+      <!-- New comment section -->
+      <div id="new-comment-placeholder />
+
+      <!-- Recommended Topics -->
+      <div class="mb-4">
+        <div class="h5">Recommended Topics</div>
+        <div class="d-flex rec-topics-container">
+          <div class="rec-topics">
+            <p>Topic 1</p>
+          </div>
+          <div class="rec-topics">
+            <p>Topic 2</p>
+          </div>
+          <div class="rec-topics">
+            <p>Topic 3</p>
+          </div>
+          <div class="rec-topics">
+            <p>Topic 4</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Render new comment section if user logged in
+    if (CURRENT_USER) {
+      contentElem.innerHTML = contentElemHTML.replace(
+        `<div id="new-comment-placeholder />`,
+        `<div class="w-100 my-4">
+          <input 
+            id="input-post-comment"
+            class="w-100 comment-input"
+            placeholder="Comment here"
+          />
+        </div>`
+      );
+    } else {
+      contentElem.innerHTML = contentElemHTML;
+    }
+
+    container.appendChild(contentElem);
+    addEventToInputPostComment(post);
+    renderLikes(post);
+    await renderComments(post);
+  }
+
+  // Render Like section
+  function renderLikes(post) {
+    // Insert total number of likes
+    document.querySelector("#post-number-of-likes").innerText =
+      post.likes + " Likes";
+  }
+
+  // Render comment section
   function renderComments(post) {
     return new Promise((res) => {
       // Get the comment content
@@ -26,8 +123,8 @@
           // Insert total number of comments
           document.querySelector("#post-number-of-comments").innerText =
             querySnapshot.size > 1
-              ? `${querySnapshot.size} comments`
-              : `${querySnapshot.size} comment`;
+              ? `${querySnapshot.size} Comments`
+              : `${querySnapshot.size} Comment`;
 
           // Insert each comments
           querySnapshot.forEach((doc, index) => {
@@ -92,80 +189,31 @@
     });
   }
 
-  async function renderPostDetail(post) {
-    const container = document.querySelector("#post-detail-container");
-    const contentElem = document.createElement("div");
-    contentElem.setAttribute("class", "container-fluid my-3");
-    contentElem.innerHTML = `
-      <!-- Title -->
-      <div class="h4">${post.title}</div>
-
-      <!-- Tag badges -->
-      <div class="d-flex mb-2">
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
-        <div class="badge rounded-pill bg-secondary text-white mr-1">
-          lorem ipsum
-        </div>
-      </div>
-
-      <!-- Content -->
-      <div class="my-2">${post.content}</div>
-
-      <!-- Post interaction -->
-      <div class="d-flex">
-        <div class="d-flex align-items-center">
-          <img class="icon" src="./images/icon-like.png" alt="icon-sharing" />
-          <p class="ml-2">12 Likes</p>
-        </div>
-        <div class="d-flex align-items-center ml-3 flex-1">
-          <img class="icon" src="./images/icon-comment.png" alt="icon-sharing" />
-          <p class="ml-2" id="post-number-of-comments"></p>
-        </div>
-        <div class="d-flex align-items-center">
-          <img class="icon-bookmark" src="./images/icon-bookmark.png" alt="icon-bookmark" />
-        </div>
-      </div>
-      <div class="bg-secondary w-100 mt-3 mb-2" style="height: 2px"></div>
-
-      <!-- Comment section -->
-      <div id="post-comment-wrapper">
-      </div>
-
-      <!-- New comment section -->
-      <div class="w-100 my-4">
-        <input class="w-100 comment-input" placeholder="Comment here" />
-      </div>
-
-      <!-- Recommended Topics -->
-      <div class="mb-4">
-        <div class="h5">Recommended Topics</div>
-        <div class="d-flex rec-topics-container">
-          <div class="rec-topics">
-            <p>Topic 1</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 2</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 3</p>
-          </div>
-          <div class="rec-topics">
-            <p>Topic 4</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    container.appendChild(contentElem);
-    await renderComments(post);
+  // Event handler for input comment
+  function addEventToInputPostComment(post) {
+    const element = document.querySelector("#input-post-comment");
+    if (element) {
+      element.addEventListener("change", (event) => {
+        db.collection("comments")
+          .add({
+            content: event.target.value || "",
+            post_id: post.id,
+            user_id: CURRENT_USER.uid,
+            likes: 0,
+            who_likes: [],
+            date_created: Date.now(),
+          })
+          .then(() => {
+            event.target.value = "";
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }
   }
 
-  // Event handler like button
+  // Event handler like comment button
   function addEventToLikeCommentIconn() {
     const elements = document.querySelectorAll(".comment-like-icon-wrapper");
 

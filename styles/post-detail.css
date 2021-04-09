@@ -18,6 +18,10 @@ p {
   height: 25px;
 }
 
+.text-capitalized {
+  text-transform: capitalize;
+}
+
 .flex-1 {
   flex: 1;
 }
