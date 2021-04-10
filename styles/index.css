@@ -36,6 +36,10 @@ p {
   font-weight: bold;
 }
 
+.post-content {
+  white-space: pre-line;
+}
+
 .separated-line {
   height: 4px;
   margin-top: 5px;

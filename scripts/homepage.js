@@ -72,16 +72,12 @@
       const postContentElem = document.createElement("div");
       postContentElem.setAttribute("class", "my-2 post-content");
       const formattedContent = shortenContent(post.content);
-      postContentElem.innerHTML = `
-        <p>${formattedContent}${
+      postContentElem.innerHTML = `<p>${formattedContent}${
         formattedContent.length < post.content.length
-          ? `<span class="text-read-more text-primary post-readmore">
-              Read More
-            </span>`
+          ? `<span class="text-read-more text-primary post-readmore">Read More</span>`
           : ""
       }
-        </p>
-      `;
+        </p>`;
       container.appendChild(postContentElem);
 
       // Interaction

@@ -36,7 +36,7 @@
       <div id="post-tag-placeholder"></div>
 
       <!-- Content -->
-      <div class="my-2">${post.content}</div>
+      <div class="my-2 post-content">${post.content}</div>
 
       <!-- Post interaction -->
       <div class="d-flex">
@@ -147,6 +147,7 @@
             const commentElem = document.createElement("div");
             let commentSection = "";
             let promises = [];
+            const listOfCommentIds = [];
 
             // Insert total number of comments
             document.querySelector("#post-number-of-comments").innerText =
@@ -178,6 +179,13 @@
                       commentDoc.date_created
                     )}</div>
                     <div class="mr-2">${commentDoc.likes} likes</div>
+                    ${
+                      commentDoc.user_id === (currentUser || {}).uid
+                        ? `<div class="comment-delete" comment-id="${doc.id}" id="delete-comment-${doc.id}">
+                            <img src="./images/icon-trash.png" alt="delete" />
+                          </div>`
+                        : ""
+                    }
                   </div>
                 </div>
                 <div class="comment-like-icon-wrapper" comment_id="${doc.id}">
@@ -188,6 +196,12 @@
                   }"/>
                 </div>
               </div>`;
+
+              // Store comment ids to add event delete comment
+              if (commentDoc.user_id === (currentUser || {}).uid) {
+                listOfCommentIds.push(doc.id);
+              }
+
               content = content.replace("<content>", commentDoc.content);
               commentSection += content;
             });
@@ -213,7 +227,12 @@
               );
               postCommentWrapper.innerHTML = "";
               postCommentWrapper.appendChild(commentElem);
+
               addEventToLikeCommentIconn();
+
+              listOfCommentIds.forEach((commentId) => {
+                addClickEventToDeleteCommentIcon(commentId);
+              });
               res("");
             });
           });
@@ -369,6 +388,20 @@
           if (!currentUser) return;
 
           clickBookMarkPost(post, currentUser.uid);
+        });
+      }
+    }
+
+    // Event handler to bookmark icon
+    function addClickEventToDeleteCommentIcon(commentId) {
+      const deleteCommentElem = document.querySelector(
+        `#delete-comment-${commentId}`
+      );
+      if (deleteCommentElem) {
+        deleteCommentElem.addEventListener("click", (event) => {
+          if (!currentUser) return;
+
+          db.collection("comments").doc(commentId).delete();
         });
       }
     }

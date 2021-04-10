@@ -32,6 +32,10 @@ p {
   text-transform: lowercase;
 }
 
+.post-content {
+  white-space: pre-wrap;
+}
+
 .text-capitalized {
   text-transform: capitalize;
   font-weight: bold;
@@ -70,6 +74,11 @@ p {
   padding-left: 15px;
   height: 38px;
   outline: none;
+}
+
+.comment-delete img {
+  width: 13px;
+  margin-bottom: 3px;
 }
 
 .rec-topics-container {
