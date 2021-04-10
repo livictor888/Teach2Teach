@@ -2,6 +2,7 @@
   window.onload = async function () {
     showSpinner();
     const currentUser = await isUserLoggedIn();
+    const postHomePage = document.querySelector("#homepage-content");
 
     /**** ===== Render post detail ===== ****/
     db.collection("posts")
@@ -9,7 +10,6 @@
       .onSnapshot((querySnapshot) => {
         removeSpinner();
 
-        const postHomePage = document.querySelector("#homepage-content");
         postHomePage.innerHTML = "";
 
         querySnapshot.forEach((doc) => {
@@ -38,12 +38,13 @@
 
     /**** ===== Helper functions ===== ****/
     async function renderNewPost(post) {
-      const postHomePage = document.querySelector("#homepage-content");
-
       // Container
+      const containerWrapper = document.createElement("div");
+      containerWrapper.setAttribute("class", "card m-2 shadow");
       const container = document.createElement("div");
-      container.setAttribute("class", "container-fluid my-3");
-      postHomePage.appendChild(container);
+      container.setAttribute("class", "card-body container-fluid");
+      containerWrapper.appendChild(container);
+      postHomePage.appendChild(containerWrapper);
       container.addEventListener("click", () => {
         window.location.href = `./post-detail.html?post_id=${post.id}`;
       });
@@ -60,7 +61,7 @@
       let tagContent = "";
       (post.tag || []).forEach((tag) => {
         tagContent += `
-            <div class="badge rounded-pill bg-secondary text-white mt-1 mr-1">
+            <div class="badge rounded-pill text-white mt-1 mr-1" style="background-color: #185d8b;">
               ${tag}
             </div>`;
       });
@@ -72,13 +73,13 @@
       postContentElem.setAttribute("class", "my-2 post-content");
       const formattedContent = shortenContent(post.content);
       postContentElem.innerHTML = `
-        <p>${formattedContent}
-          ${
-            formattedContent.length < post.content.length &&
-            `<span class="text-read-more text-primary post-readmore">
-                Read More
-              </span>`
-          }
+        <p>${formattedContent}${
+        formattedContent.length < post.content.length
+          ? `<span class="text-read-more text-primary post-readmore">
+              Read More
+            </span>`
+          : ""
+      }
         </p>
       `;
       container.appendChild(postContentElem);
@@ -113,9 +114,9 @@
       addClickEventToBookmarkIcon(post);
 
       // Separated line
-      const line = document.createElement("div");
-      line.setAttribute("class", "bg-secondary w-100 separated-line");
-      container.parentNode.appendChild(line);
+      // const line = document.createElement("div");
+      // line.setAttribute("class", "bg-secondary w-100 separated-line");
+      // container.parentNode.appendChild(line);
 
       await renderBookmarkIcon(post);
     }

@@ -10,7 +10,13 @@
   <!-- Bootstrap for Mobile-first, and JQuery -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+
   <!-- Optional styles and scripts of your own -->
+  <link rel="stylesheet" href="./styles/search.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
 
 <body>
   <!-------------------------------------->
@@ -18,11 +24,11 @@
   <!-------------------------------------->
   <!-- Header Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="nav">
-    <a class="navbar-brand" href="">Teach 2 Teach</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+    <a class="navbar-brand" href="/">Teach 2 Teach</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerTopNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <div class="collapse navbar-collapse" id="navbarTogglerTopNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" id="log-in">
           <a class="nav-link" href="login.html">Login / Signup</a>
@@ -51,36 +57,39 @@
     <div class="container">
       <br />
       <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-          <div class="card card-sm">
-            <div class="card-body row no-gutters align-items-center">
-              <div class="col-auto">
-                <i class="fas fa-search h4 text-body"></i>
-              </div>
-              <!--end of col-->
-              <div class="col">
-                <input class="form-control form-control-lg form-control-borderless" type="search"
-                  placeholder="Search keywords for your education" id="search-keyword" />
-              </div>
-              <!--end of col-->
-              <div class="col-auto">
-                <button class="btn btn-lg btn-info" id="search-post">
-                  Search
-                </button>
-              </div>
-              <!--end of col-->
+        <div class="card rounded-pill w-100 mx-3">
+          <div class="row no-gutters align-items-center px-2">
+            <div class="col-auto">
+              <i class="fas fa-search h4 text-body"></i>
+            </div>
+            <!--end of col-->
+            <div class="col">
+              <input class="pl-2 form-control-borderless w-100" type="search" placeholder="Enter keywords here"
+                id="search-keyword" />
+            </div>
+            <!--end of col-->
+            <div>
+              <button class="btn" id="search-post">
+                <img class="rounded-circle" src="./images/icon-search.png"
+                  style="background-color: #023E7D; width: 35px; height: 35px; padding: 7px;" />
+              </button>
             </div>
             <!--end of col-->
           </div>
+          <!--end of col-->
         </div>
       </div>
       <!--end of col-->
     </div>
-  </div>
+
+    <!--Search result here-->
+    <div id="number-of-result" class="resultNum"></div>
+    <div id="search-content"></div>
   </div>
 
+
   <!-- Tag badges -->
-  <div class="popular-subject">
+  <!-- <div class="popular-subject">
     <div class="badge rounded-pill bg-secondary text-white mr-1">
       math miniquiz
     </div>
@@ -90,12 +99,10 @@
     <div class="badge rounded-pill bg-secondary text-white mr-1">
       online class
     </div>
-  </div>
+  </div> -->
 
 
-  <!--Search result here-->
-  <div id="number-of-result" class="resultNum"></div>
-  <div id="search-content"></div>
+
   <!----------------------------------------------->
   <!-- JS: Boostrap, Firebase, API related    -->
   <!----------------------------------------------->

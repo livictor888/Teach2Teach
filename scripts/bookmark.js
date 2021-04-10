@@ -47,7 +47,7 @@
     function renderBookmarkedPosts(post) {
       // Container
       const containerWrapper = document.createElement("div");
-      containerWrapper.setAttribute("class", "card mx-2 my-2");
+      containerWrapper.setAttribute("class", "card m-2 shadow");
       containerWrapper.setAttribute("id", `post-card-${post.id}`);
       const container = document.createElement("div");
       container.setAttribute("class", "container-fluid my-3");

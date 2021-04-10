@@ -6,24 +6,30 @@
   margin: 1em;
 }
 
-.btn-primary {
-  border-radius: 10px;
-  margin: 20 px;
-}
-
-#EditProfileButton {
-  visibility: visable;
-}
-
-#UpdateProfileButton {
-  visibility: hidden;
-}
-
-#CancelProfileButton {
-  visibility: hidden;
-}
-
 #nav {
   background-color: #185d8b;
+  color: white;
+}
+
+.button {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 20px;
+}
+
+.edit-button {
+  background-color: #2280bf;
+  color: white;
+}
+
+.discard-button {
+  background-color: #6d6d6d;
+  color: white;
+  margin-right: 5px;
+}
+
+.update-button {
+  background-color: #2280bf;
   color: white;
 }

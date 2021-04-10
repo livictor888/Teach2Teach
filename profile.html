@@ -80,12 +80,17 @@
           aria-describedby="basic-addon1" readonly />
       </div>
 
-      <button id="EditProfileButton" onclick="letUserEdit()" class="btn-primary">
-        Edit Profile
-      </button>
-      <button id="UpdateProfileButton" onclick="letUserUpdate()" class="btn-primary">
-        Update
-      </button>
+      <div class="d-flex justify-content-end w-100">
+        <button id="EditProfileButton" onclick="letUserEdit()" class="button edit-button">
+          Edit Profile
+        </button>
+        <button class="d-none button discard-button" id="DiscardProfileButton" onclick="letUserDiscard()">
+          Discard
+        </button>
+        <button class="d-none button update-button" id="UpdateProfileButton" onclick="letUserUpdate()">
+          Update
+        </button>
+      </div>
       <!-- TO DO: cancel button
     <button id="CancelProfileButton" onclick="letUserCancel()" class="btn-primary">Cancel</button>
     -->

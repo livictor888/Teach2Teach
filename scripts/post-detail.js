@@ -121,7 +121,7 @@
         let content = "";
         (post.tag || []).forEach((tag) => {
           content += `
-          <div class="badge rounded-pill bg-secondary text-white mt-1 mr-1">
+          <div class="badge rounded-pill text-white mt-1 mr-1" style="background-color: #185d8b;">
             ${tag}
           </div>`;
         });
