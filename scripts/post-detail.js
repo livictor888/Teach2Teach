@@ -68,17 +68,23 @@
       <div class="mb-4">
         <div class="h5">Recommended Topics</div>
         <div class="d-flex rec-topics-container">
-          <div class="rec-topics">
-            <p>Topic 1</p>
+          <div class="rec-topics" keyword="Communication">
+            <p>Communication</p>
           </div>
-          <div class="rec-topics">
-            <p>Topic 2</p>
+          <div class="rec-topics" keyword="Entertainment Tips">
+            <p>Entertainment Tips</p>
           </div>
-          <div class="rec-topics">
-            <p>Topic 3</p>
+          <div class="rec-topics" keyword="Creative Content">
+            <p>Creative Content</p>
           </div>
-          <div class="rec-topics">
-            <p>Topic 4</p>
+          <div class="rec-topics" keyword="Planning and Organisation">
+            <p>Planning</p>
+          </div>
+          <div class="rec-topics" keyword="Time Management">
+            <p>Time Management</p>
+          </div>
+          <div class="rec-topics" keyword="Other">
+            <p>Other</p>
           </div>
         </div>
       </div>
@@ -107,6 +113,7 @@
       addEventToLikePost(post);
       addEventToInputPostComment(post);
       addClickEventToBookmarkIcon(post);
+      addClickEventToTopics();
 
       renderLikes(post);
       await renderBookmarkIcon(post);
@@ -404,6 +411,20 @@
           db.collection("comments").doc(commentId).delete();
         });
       }
+    }
+
+    // Event handler to bookmark icon
+    function addClickEventToTopics() {
+      const topicElems = document.querySelectorAll(`.rec-topics`);
+      topicElems.forEach((elem) => {
+        if (elem) {
+          elem.addEventListener("click", () => {
+            window.location.href = `/search.html?tag=${elem.getAttribute(
+              "keyword"
+            )}`;
+          });
+        }
+      });
     }
   };
 })();

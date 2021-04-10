@@ -28,6 +28,10 @@ isUserLoggedIn().then(function (somebody) {
             doc.data().favsub || "Your favourite course"
           );
       });
+
+    editButton.addEventListener("click", letUserEdit);
+    updateButton.addEventListener("click", letUserUpdate);
+    discardButton.addEventListener("click", letUserDiscard);
   }
 });
 
@@ -93,7 +97,6 @@ function letUserUpdate() {
 
   isUserLoggedIn().then(function (somebody) {
     if (somebody) {
-      console.log(somebody.uid);
       db.collection("users")
         .doc(somebody.uid)
         .update({
