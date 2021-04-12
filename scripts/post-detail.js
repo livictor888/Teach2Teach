@@ -238,7 +238,7 @@
               addEventToLikeCommentIconn();
 
               listOfCommentIds.forEach((commentId) => {
-                addClickEventToDeleteCommentIcon(commentId);
+                addClickEventToDeleteCommentIcon(post, commentId);
               });
               res("");
             });
@@ -400,7 +400,7 @@
     }
 
     // Event handler to bookmark icon
-    function addClickEventToDeleteCommentIcon(commentId) {
+    function addClickEventToDeleteCommentIcon(post, commentId) {
       const deleteCommentElem = document.querySelector(
         `#delete-comment-${commentId}`
       );
@@ -408,7 +408,16 @@
         deleteCommentElem.addEventListener("click", (event) => {
           if (!currentUser) return;
 
-          db.collection("comments").doc(commentId).delete();
+          db.collection("comments")
+            .doc(commentId)
+            .delete()
+            .then(() => {
+              db.collection("posts")
+                .doc(post.id)
+                .update({
+                  comments: post.comments - 1,
+                });
+            });
         });
       }
     }

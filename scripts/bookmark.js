@@ -36,7 +36,7 @@
             <div class="no-bookmark-post">
               <img src="./images/icon-warning.jpg" alt="warning" />
               <div class="no-bookmark-post-text">
-                You currently don't have any bookmark posted
+                You currently don't have any bookmarked posts
               </div>
             </div>
           `;
@@ -69,7 +69,7 @@
       let tagContent = "";
       (post.tag || []).forEach((tag) => {
         tagContent += `
-            <div class="badge rounded-pill bg-secondary text-white mt-1 mr-1">
+            <div class="badge rounded-pill text-white mt-1 mr-1" style="background-color: #185d8b;">
               ${tag}
             </div>`;
       });
