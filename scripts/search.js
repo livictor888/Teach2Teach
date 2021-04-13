@@ -17,6 +17,16 @@ if (paramKeyword) {
   searchByTag(paramTag);
 }
 
+// Event handler hit "Enter" key
+if (inputTextField) {
+  inputTextField.addEventListener("keydown", (event) => {
+    // Search for ennter key only
+    if (event.target.value && event.keyCode === 13 && inputTextField.value) {
+      search(inputTextField.value);
+    }
+  });
+}
+
 // Event handler for click search button
 searchButton.addEventListener("click", function () {
   if (!inputTextField || !inputTextField.value) return;
@@ -43,6 +53,14 @@ function search(keyword) {
     numberOfResult.innerText =
       resultNum + " results are found with keyword `" + keyword + "`";
     inputTextField.value = "";
+
+    if (resultNum === 0) {
+      searchResultWrapper.innerHTML = `
+        <div class="no-search">
+          <img src="./images/icon-search-no-result.png" alt="warning" />
+        </div>
+      `;
+    }
   });
 }
 
@@ -94,9 +112,9 @@ function renderNewPost(post) {
   let tagContent = "";
   (post.tag || []).forEach((tag) => {
     tagContent += `
-              <div class="badge rounded-pill text-white mt-1 mr-1" style="background-color: #185d8b;">
-                ${tag}
-              </div>`;
+      <div class="badge rounded-pill text-white mt-1 mr-1" style="background-color: #185d8b;">
+        ${tag}
+      </div>`;
   });
   tagContainer.innerHTML = tagContent;
   container.appendChild(tagContainer);

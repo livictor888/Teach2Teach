@@ -79,3 +79,23 @@
   text-transform: capitalize;
   font-weight: bold;
 }
+
+.no-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px auto;
+  width: 50%;
+}
+
+.no-search img {
+  height: 130px;
+}
+
+.no-search-text {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
