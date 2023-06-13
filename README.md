@@ -1,5 +1,4 @@
-#  Try the Mobile App here
-[Click here to watch the YouTube video](https://teach-to-teach.web.app/)
+<span style="font-size: 25px;">[Try the mobile app here!](https://teach-to-teach.web.app/)</span>
 
 ## My Web Application (Title)
 
