@@ -1,4 +1,4 @@
-<span style="font-size: 25px;">[Try the mobile app here!](https://teach-to-teach.web.app/)</span>
+<span style="font-size: 40px;">[Try the mobile app here!](https://teach-to-teach.web.app/)</span>
 
 ## My Web Application (Title)
 
